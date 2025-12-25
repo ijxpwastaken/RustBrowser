@@ -6,7 +6,7 @@ use std::num::NonZeroU32;
 use std::rc::Rc;
 
 use browser_core::Browser;
-use browser_core::adblocker::PrivacyShield;
+use browser_core::adblocker::AdvancedPrivacyShield;
 use render::{Color, DisplayCommand};
 use winit::dpi::LogicalSize;
 use winit::event::{Event, WindowEvent, ElementState, MouseButton};
@@ -95,7 +95,7 @@ fn main() {
     let mut surface = softbuffer::Surface::new(&context, window.clone()).unwrap();
 
     let mut browser = Browser::new(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    let mut privacy_shield = PrivacyShield::new();
+    let privacy_shield = AdvancedPrivacyShield::new();
     
     let mut current_url = String::from("about:test");
     let mut mouse_pos: (f64, f64) = (0.0, 0.0);
@@ -294,7 +294,7 @@ fn draw_modern_ui(
     height: u32, 
     url: &str, 
     browser: &Browser,
-    privacy_shield: &PrivacyShield,
+    privacy_shield: &AdvancedPrivacyShield,
     tabs: &[Tab],
     addressbar_focused: bool,
     mouse_pos: (f64, f64),
@@ -439,7 +439,7 @@ fn draw_tabs(buffer: &mut [u32], width: u32, height: u32, tabs: &[Tab], y: u32, 
 }
 
 fn draw_toolbar(buffer: &mut [u32], width: u32, height: u32, y: u32, url: &str, 
-    focused: bool, mouse_pos: (f64, f64), privacy_shield: &PrivacyShield) {
+    focused: bool, mouse_pos: (f64, f64), privacy_shield: &AdvancedPrivacyShield) {
     
     let button_y = y + (TOOLBAR_HEIGHT - BUTTON_SIZE) / 2;
     

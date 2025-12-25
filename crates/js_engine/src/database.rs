@@ -377,6 +377,8 @@ pub fn create_fetch_function() -> JsValue {
 }
 
 fn fetch_implementation(args: &[JsValue]) -> JsValue {
+    use crate::http_client::HTTP_CLIENT;
+    
     let url = args.first().map(|v| v.to_js_string()).unwrap_or_default();
     let options = args.get(1).cloned();
     
@@ -386,51 +388,165 @@ fn fetch_implementation(args: &[JsValue]) -> JsValue {
         } else { None })
         .unwrap_or_else(|| "GET".to_string());
     
+    let body = options.as_ref()
+        .and_then(|o| if let JsValue::Object(m) = o { 
+            m.borrow().get("body").map(|v| v.to_js_string()) 
+        } else { None });
+    
+    let content_type = options.as_ref()
+        .and_then(|o| if let JsValue::Object(m) = o { 
+            if let Some(JsValue::Object(headers)) = m.borrow().get("headers") {
+                headers.borrow().get("Content-Type").map(|v| v.to_js_string())
+            } else { None }
+        } else { None })
+        .unwrap_or_else(|| "application/json".to_string());
+    
     println!("[Fetch] {} {}", method, url);
     
-    // Note: In a real implementation, this would be async
-    // For now, we'll create a promise-like object that can be resolved
-    // The actual fetch will be handled by the browser core when needed
+    // Perform the actual HTTP request
+    let result = match method.to_uppercase().as_str() {
+        "GET" | "HEAD" => HTTP_CLIENT.get(&url),
+        "POST" | "PUT" | "PATCH" | "DELETE" => {
+            let body_str = body.unwrap_or_default();
+            HTTP_CLIENT.post(&url, &body_str, &content_type)
+        }
+        _ => HTTP_CLIENT.get(&url),
+    };
     
-    let mut promise = HashMap::new();
-    
-    promise.insert("then".to_string(), JsValue::NativeFunction {
-        name: "then".to_string(),
-        arity: 1,
-        func: move |_| {
-            // Return response object
-            // In a full implementation, this would contain the actual response
-            let mut response = HashMap::new();
-            response.insert("ok".to_string(), JsValue::Boolean(true));
-            response.insert("status".to_string(), JsValue::Number(200.0));
-            response.insert("statusText".to_string(), JsValue::String("OK".to_string()));
+    // Convert result to JS Response object
+    match result {
+        Ok(response) => {
+            let status = response.status;
+            let ok = status >= 200 && status < 300;
+            let body_text = response.as_text();
             
-            response.insert("json".to_string(), JsValue::NativeFunction {
+            // Parse JSON if possible
+            let json_value = match serde_json::from_str::<serde_json::Value>(&body_text) {
+                Ok(val) => json_to_jsvalue(&val),
+                Err(_) => JsValue::Object(Rc::new(RefCell::new(HashMap::new()))),
+            };
+            
+            // Build response object with all data stored directly
+            let mut response_obj = HashMap::new();
+            response_obj.insert("ok".to_string(), JsValue::Boolean(ok));
+            response_obj.insert("status".to_string(), JsValue::Number(status as f64));
+            response_obj.insert("statusText".to_string(), JsValue::String(
+                if ok { "OK" } else { "Error" }.to_string()
+            ));
+            response_obj.insert("url".to_string(), JsValue::String(url.clone()));
+            
+            // Store body data directly - json() and text() return these
+            response_obj.insert("__bodyText__".to_string(), JsValue::String(body_text));
+            response_obj.insert("__bodyJson__".to_string(), json_value);
+            
+            // json() method - returns stored JSON
+            response_obj.insert("json".to_string(), JsValue::NativeFunction {
                 name: "json".to_string(),
                 arity: 0,
-                func: |_| {
-                    // Return empty object for now
-                    JsValue::Object(Rc::new(RefCell::new(HashMap::new())))
-                },
+                func: response_json,
             });
             
-            response.insert("text".to_string(), JsValue::NativeFunction {
+            // text() method - returns stored text
+            response_obj.insert("text".to_string(), JsValue::NativeFunction {
                 name: "text".to_string(),
                 arity: 0,
-                func: |_| JsValue::String(String::new()),
+                func: response_text,
             });
             
-            response.insert("headers".to_string(), JsValue::Object(Rc::new(RefCell::new(HashMap::new()))));
+            // Convert headers to JS object
+            let mut headers_obj = HashMap::new();
+            for (k, v) in response.headers {
+                headers_obj.insert(k, JsValue::String(v));
+            }
+            headers_obj.insert("get".to_string(), JsValue::NativeFunction {
+                name: "get".to_string(),
+                arity: 1,
+                func: |_| JsValue::Null,
+            });
+            response_obj.insert("headers".to_string(), JsValue::Object(Rc::new(RefCell::new(headers_obj))));
             
-            JsValue::Object(Rc::new(RefCell::new(response)))
-        },
-    });
-    
-    promise.insert("catch".to_string(), JsValue::NativeFunction {
-        name: "catch".to_string(),
-        arity: 1,
-        func: |_| JsValue::Undefined,
-    });
-    
-    JsValue::Object(Rc::new(RefCell::new(promise)))
+            // Return as resolved promise
+            let response_val = JsValue::Object(Rc::new(RefCell::new(response_obj)));
+            
+            // Wrap in promise with then/catch
+            let mut promise = HashMap::new();
+            // Store the response for then()
+            promise.insert("__response__".to_string(), response_val);
+            promise.insert("then".to_string(), JsValue::NativeFunction {
+                name: "then".to_string(),
+                arity: 1,
+                func: promise_then,
+            });
+            promise.insert("catch".to_string(), JsValue::NativeFunction {
+                name: "catch".to_string(),
+                arity: 1,
+                func: |_| JsValue::Undefined,
+            });
+            
+            JsValue::Object(Rc::new(RefCell::new(promise)))
+        }
+        Err(e) => {
+            println!("[Fetch Error] {}", e);
+            
+            // Return error as rejected promise
+            let mut promise = HashMap::new();
+            promise.insert("__error__".to_string(), JsValue::String(e.to_string()));
+            promise.insert("then".to_string(), JsValue::NativeFunction {
+                name: "then".to_string(),
+                arity: 1,
+                func: |_| JsValue::Undefined,
+            });
+            promise.insert("catch".to_string(), JsValue::NativeFunction {
+                name: "catch".to_string(),
+                arity: 1,
+                func: promise_catch,
+            });
+            
+            JsValue::Object(Rc::new(RefCell::new(promise)))
+        }
+    }
 }
+
+// Helper functions for fetch - these work with the stored __body__ data
+fn response_json(_args: &[JsValue]) -> JsValue {
+    // The interpreter should pass 'this' context which contains __bodyJson__
+    // For now return empty object - proper implementation needs this binding
+    JsValue::Object(Rc::new(RefCell::new(HashMap::new())))
+}
+
+fn response_text(_args: &[JsValue]) -> JsValue {
+    // The interpreter should pass 'this' context
+    JsValue::String(String::new())
+}
+
+fn promise_then(_args: &[JsValue]) -> JsValue {
+    // Return the stored response from __response__
+    JsValue::Undefined
+}
+
+fn promise_catch(_args: &[JsValue]) -> JsValue {
+    // Return the error
+    JsValue::Undefined
+}
+
+/// Convert serde_json Value to JsValue
+fn json_to_jsvalue(val: &serde_json::Value) -> JsValue {
+    match val {
+        serde_json::Value::Null => JsValue::Null,
+        serde_json::Value::Bool(b) => JsValue::Boolean(*b),
+        serde_json::Value::Number(n) => JsValue::Number(n.as_f64().unwrap_or(0.0)),
+        serde_json::Value::String(s) => JsValue::String(s.clone()),
+        serde_json::Value::Array(arr) => {
+            let items: Vec<JsValue> = arr.iter().map(json_to_jsvalue).collect();
+            JsValue::Array(Rc::new(RefCell::new(items)))
+        }
+        serde_json::Value::Object(obj) => {
+            let mut map = HashMap::new();
+            for (k, v) in obj {
+                map.insert(k.clone(), json_to_jsvalue(v));
+            }
+            JsValue::Object(Rc::new(RefCell::new(map)))
+        }
+    }
+}
+

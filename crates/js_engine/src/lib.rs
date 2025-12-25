@@ -14,6 +14,7 @@ pub mod react;
 pub mod database;
 pub mod nextjs;
 pub mod security;
+pub mod http_client;
 
 pub use tokenizer::{Tokenizer, Token, TokenType};
 pub use parser::Parser;

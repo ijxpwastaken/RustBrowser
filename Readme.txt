@@ -1,10 +1,37 @@
-RustBrowser is a browser built with Rust.  It is a work in progress and is not yet ready for production use. and its sitll in the early stages of development. 
+RustBrowser - Ultra-Fast Privacy-First Browser
+==============================================
 
+A browser built from scratch in Rust. Zero Chrome/Firefox code. 100% memory-safe. Blazing fast.
 
-We are 100% open to contributors! If you want to help build a world where Google doesn't control the rendering of every website, jump in.
-independent of the browser.  no code form chrome or firefox
-Since its in rust its fast and secure and has no vulnerabilities yet
-im planning to add adblocking but we just focusing on the js engine not the ui yet or any thing else
-Zero Legacy Bloat: By starting from scratch, we avoid 30 years of legacy C++ vulnerabilities found in other engines.
-100% Safe: Rust's memory safety features prevent common vulnerabilities like buffer overflows and use-after-free. 
-Native Privacy by adblocking tracker protection 
+🚀 SPEED FEATURES:
+- Real HTTP fetch with connection pooling (via ureq)
+- LRU response caching (500 entries, 5MB max per entry)
+- Cache-Control header parsing for smart cache TTL
+- Single-origin optimization for React/Next.js apps
+- Zero-copy JSON parsing with serde
+
+🛡️ PRIVACY SHIELD:
+- Built-in adblocker with 50+ blocked ad domains
+- EasyList-compatible filter syntax
+- Tracker prevention with cookie blocking
+- Fingerprint protection (Canvas, Audio, WebGL spoofing)
+- Third-party cookie blocking by default
+- Element hiding CSS rules
+
+🎨 MODERN UI:
+- Premium dark theme with indigo accents
+- Tabbed browsing interface
+- Rounded corners and glassmorphism effects
+- Shield icon showing blocked ads/trackers count
+- Navigation buttons with hover effects
+
+🔒 SECURITY:
+- Zero Legacy Bloat: Starting fresh avoids 30 years of C++ vulnerabilities
+- 100% Safe: Rust's memory safety prevents buffer overflows and use-after-free
+- Content Security Policy (CSP) enforcement
+- Domain whitelisting for sensitive APIs
+- Native privacy - no tracking, no telemetry
+
+💡 CONTRIBUTING:
+Free to contribute! Just started as a learning project but it's becoming real.
+Focus areas: JS engine optimization, CSS parser, Web APIs.

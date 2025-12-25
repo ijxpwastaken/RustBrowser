@@ -1,0 +1,447 @@
+﻿cargo : warning: unused 
+import: `Arc`
+At line:1 char:1
++ cargo build --bin browser 
+2>&1 | Out-File -FilePath 
+build_err.txt -En ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~
+    + CategoryInfo           
+   : NotSpecified: (warning  
+  : unused import: `Arc`:S   
+ tring) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+ --> 
+crates\dom\src\node.rs:4:17
+  |
+4 | use std::sync::{Arc, 
+Weak, RwLock};
+  |                 ^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: `dom` (lib) 
+generated 1 warning (run 
+`cargo fix --lib -p dom` to 
+apply 1 suggestion)
+warning: unused import: 
+`Specificity`
+ --> 
+crates\style\src\lib.rs:6:47
+  |
+6 |     Stylesheet, Rule, 
+Selector, SelectorPart, 
+Specificity, Declaration,
+  |                          
+                     
+^^^^^^^^^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused import: 
+`Node`
+ --> 
+crates\style\src\lib.rs:9:11
+  |
+9 | use dom::{Node, NodeRef, 
+Element, Document};
+  |           ^^^^
+
+warning: unused import: 
+`std::collections::HashMap`
+  --> 
+crates\style\src\lib.rs:10:5
+   |
+10 | use 
+std::collections::HashMap;
+   |     
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unreachable pattern
+   --> crates\style\src\lib.r
+s:387:21
+    |
+327 |             "span" | 
+"a" | "strong" | "em" | "b" 
+| "i" | "u" | "code" | 
+"small" => {
+    |                        
+                             
+           ------ matches 
+all the relevant values
+...
+387 |             "pre" | 
+"code" => {
+    |                     
+^^^^^^ no value can reach 
+this
+    |
+    = note: `#[warn(unreachab
+le_patterns)]` (part of 
+`#[warn(unused)]`) on by 
+default
+
+warning: unreachable pattern
+   --> crates\style\src\lib.r
+s:390:13
+    |
+327 |             "span" | 
+"a" | "strong" | "em" | "b" 
+| "i" | "u" | "code" | 
+"small" => {
+    |             -----------
+-----------------------------
+--------------------------- 
+matches all the relevant 
+values
+...
+390 |             "strong" | 
+"b" => {
+    |             
+^^^^^^^^^^^^^^ no value can 
+reach this
+
+warning: unreachable pattern
+   --> crates\style\src\lib.r
+s:393:13
+    |
+327 |             "span" | 
+"a" | "strong" | "em" | "b" 
+| "i" | "u" | "code" | 
+"small" => {
+    |             -----------
+-----------------------------
+--------------------------- 
+matches all the relevant 
+values
+...
+393 |             "em" | "i" 
+=> {
+    |             ^^^^^^^^^^ 
+no value can reach this
+
+warning: `style` (lib) 
+generated 6 warnings (run 
+`cargo fix --lib -p style` 
+to apply 3 suggestions)
+warning: unused imports: 
+`FontWeight` and `Position`
+ --> 
+crates\layout\src\lib.rs:6:37
+  |
+6 | use 
+style::{ComputedStyle, 
+Display, Position, 
+FlexDirection, 
+JustifyContent, AlignItems, 
+FontWeight};
+  |                          
+           ^^^^^^^^          
+                             
+      ^^^^^^^^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused variable: 
+`is_reverse`
+   --> crates\layout\src\lib.
+rs:242:13
+    |
+242 |         let is_reverse 
+= matches!(s.flex_direction, 
+FlexDirection::RowReverse | F
+lexDirection::ColumnReverse);
+    |             ^^^^^^^^^^ 
+help: if this is 
+intentional, prefix it with 
+an underscore: `_is_reverse`
+    |
+    = note: 
+`#[warn(unused_variables)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused variable: `i`
+   --> crates\layout\src\lib.
+rs:329:14
+    |
+329 |         for (i, child) 
+in self.children.iter_mut().e
+numerate() {
+    |              ^ help: 
+if this is intentional, 
+prefix it with an 
+underscore: `_i`
+
+warning: variants 
+`CommentStart` and `Doctype` 
+are never constructed
+  --> crates\html_parser\src\
+tokenizer.rs:56:5
+   |
+40 | enum State {
+   |      ----- variants in 
+this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` has 
+derived impls for the traits 
+`Clone` and `Debug`, but 
+these are intentionally 
+ignored during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` (part 
+of `#[warn(unused)]`) on by 
+default
+
+warning: field 
+`current_token` is never read
+  --> crates\html_parser\src\
+tokenizer.rs:69:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            --------- 
+field in this struct
+...
+69 |     current_token: 
+Option<Token>,
+   |     ^^^^^^^^^^^^^
+
+warning: `layout` (lib) 
+generated 3 warnings (run 
+`cargo fix --lib -p layout` 
+to apply 3 suggestions)
+warning: `html_parser` (lib) 
+generated 2 warnings
+warning: unused import: 
+`BoxType`
+ --> 
+crates\render\src\lib.rs:6:25
+  |
+6 | use layout::{LayoutBox, 
+BoxType, Rect as LayoutRect};
+  |                         
+^^^^^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused import: 
+`ApiAccessControl`
+  --> crates\js_engine\src\in
+terpreter.rs:13:40
+   |
+13 | ...t, ApiAccessControl};
+   |       ^^^^^^^^^^^^^^^^
+   |
+   = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused import: 
+`std::sync::Arc`
+  --> crates\js_engine\src\ht
+tp_client.rs:10:5
+   |
+10 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused variable: 
+`params`
+   --> crates\js_engine\src\r
+eact.rs:494:32
+    |
+494 | ...on { params, body...
+    |         ^^^^^^ help: 
+try ignoring the field: 
+`params: _`
+    |
+    = note: 
+`#[warn(unused_variables)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unused variable: 
+`body`
+   --> crates\js_engine\src\r
+eact.rs:494:40
+    |
+494 | ...ams, body, .. } =...
+    |         ^^^^ help: try 
+ignoring the field: `body: _`
+
+warning: `render` (lib) 
+generated 1 warning (run 
+`cargo fix --lib -p render` 
+to apply 1 suggestion)
+warning: `js_engine` (lib) 
+generated 4 warnings (run 
+`cargo fix --lib -p 
+js_engine` to apply 4 
+suggestions)
+warning: unused import: 
+`Duration`
+ --> crates\browser_core\src\
+video.rs:8:17
+  |
+8 | ...me::{Duration, Inst...
+  |         ^^^^^^^^
+  |
+  = note: 
+`#[warn(unused_imports)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: field `js_console` 
+is never read
+  --> crates\browser_core\src
+\lib.rs:42:5
+   |
+25 | pub struct Browser {
+   |            ------- 
+field in this struct
+...
+42 |     js_console: Vec<S...
+   |     ^^^^^^^^^^
+   |
+   = note: 
+`#[warn(dead_code)]` (part 
+of `#[warn(unused)]`) on by 
+default
+
+warning: field `italic` is 
+never read
+    --> crates\browser_core\s
+rc\lib.rs:1060:5
+     |
+1055 | struct RenderItem {
+     |        ---------- 
+field in this struct
+...
+1060 |     italic: bool,
+     |     ^^^^^^
+     |
+     = note: `RenderItem` 
+has derived impls for the 
+traits `Clone` and `Debug`, 
+but these are intentionally 
+ignored during dead code 
+analysis
+
+warning: `browser_core` 
+(lib) generated 3 warnings 
+(run `cargo fix --lib -p 
+browser_core` to apply 1 
+suggestion)
+   Compiling browser v0.1.0 (
+C:\Users\IJXP\Pictures\browse
+r)
+error[E0599]: no method 
+named `get_stats_summary` 
+found for struct 
+`AdvancedPrivacyShield` in 
+the current scope
+   --> src\main.rs:125:57
+    |
+125 |                        
+ println!("  {}", privacy_shi
+eld.get_stats_summary());
+    |                        
+                             
+    ^^^^^^^^^^^^^^^^^
+    |
+help: there is a method 
+`get_stats` with a similar 
+name
+    |
+125 -                        
+ println!("  {}", privacy_shi
+eld.get_stats_summary());
+125 +                        
+ println!("  {}", 
+privacy_shield.get_stats());
+    |
+
+error[E0599]: no method 
+named `total_blocks` found 
+for reference 
+`&AdvancedPrivacyShield` in 
+the current scope
+   --> src\main.rs:491:40
+    |
+491 |     let total_blocked 
+= privacy_shield.total_blocks
+();
+    |                        
+                ^^^^^^^^^^^^ 
+method not found in 
+`&AdvancedPrivacyShield`
+
+warning: unused variable: `i`
+   --> src\main.rs:393:10
+    |
+393 |     for (i, tab) in 
+tabs.iter().enumerate() {
+    |          ^ help: if 
+this is intentional, prefix 
+it with an underscore: `_i`
+    |
+    = note: 
+`#[warn(unused_variables)]` 
+(part of `#[warn(unused)]`) 
+on by default
+
+warning: unreachable pattern
+   --> src\main.rs:724:9
+    |
+690 |         'a'..='z' => ge
+t_char_pattern(c.to_ascii_upp
+ercase()),
+    |         --------- 
+matches all the relevant 
+values
+...
+724 |         'x' => [0, 
+0b100001, 0b010010, 
+0b001100, 0b010010, 
+0b100001, 0, 0],
+    |         ^^^ no value 
+can reach this
+    |
+    = note: `#[warn(unreachab
+le_patterns)]` (part of 
+`#[warn(unused)]`) on by 
+default
+
+For more information about 
+this error, try `rustc 
+--explain E0599`.
+warning: `browser` (bin 
+"browser") generated 2 
+warnings
+error: could not compile 
+`browser` (bin "browser") 
+due to 2 previous errors; 2 
+warnings emitted
