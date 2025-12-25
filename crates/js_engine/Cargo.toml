@@ -1,0 +1,11 @@
+[package]
+name = "js_engine"
+version.workspace = true
+edition.workspace = true
+description = "Basic JavaScript interpreter engine"
+
+[dependencies]
+thiserror = { workspace = true }
+log = { workspace = true }
+dom = { workspace = true }
+lazy_static = "1.4"

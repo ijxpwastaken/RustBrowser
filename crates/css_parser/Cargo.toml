@@ -1,0 +1,8 @@
+[package]
+name = "css_parser"
+version.workspace = true
+edition.workspace = true
+description = "CSS tokenizer and parser"
+
+[dependencies]
+thiserror = { workspace = true }

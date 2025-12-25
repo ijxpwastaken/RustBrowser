@@ -1,0 +1,126 @@
+﻿cargo : warning: 
+unused import: `Arc`
+At line:1 char:1
++ cargo run --bin 
+debug_parser 2>&1 | 
+Out-File -FilePath 
+debug_output.t ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Ar    
+c`:String) [], Re    
+moteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\dom\src\no
+de.rs:4:17
+  |
+4 | use 
+std::sync::{Arc, 
+Weak, RwLock};
+  |                 
+^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `dom` (lib) 
+generated 1 warning 
+(run `cargo fix --lib 
+-p dom` to apply 1 
+suggestion)
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: 
+Option<Token>,
+   |     ^^^^^^^^^^^^^
+
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+    Finished `dev` 
+profile [unoptimized 
++ debuginfo] 
+target(s) in 0.08s
+     Running `target\d
+ebug\debug_parser.exe`
+=== Parsing complex HTML ===
+HTML length: 205 bytes
+[Parser] Got 17 tokens
+[Parser] Token 0: Doctype { name: "html", public_id: None, system_id: None }
+[Parser] Token 1: Text("\n")
+[Parser] Token 2: Text("html lang=\"en\">\n  ")
+[Parser] Token 3: Text("head>\n    ")
+[Parser] Token 4: Text("title>HTML5 Test Page")
+[Parser] Token 5: Text("/title>\n  ")
+[Parser] Token 6: Text("/head>\n  ")
+[Parser] Token 7: Text("body>\n    ")
+[Parser] Token 8: Text("header>\n      ")
+[Parser] Token 9: Text("h1>HTML5 Test Page")
+[Parser] Token 10: Text("/h1>\n      ")
+[Parser] Token 11: Text("p>This is a test page.")
+[Parser] Token 12: Text("/p>\n    ")
+[Parser] Token 13: Text("/header>\n  ")
+[Parser] Token 14: Text("/body>\n")
+[Parser] Token 15: Text("/html>")
+[Parser] Token 16: Eof
+[Parser] After processing, document_element is: false
+Parse OK!
+Doctype: Some(DocumentType { name: "html", public_id: "", system_id: "" })
+Has document_element: false
+ERROR: No document_element!
+
+=== Tree Print ===
+Document:
+  DOCTYPE: html

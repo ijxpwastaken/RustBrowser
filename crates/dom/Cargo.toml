@@ -1,0 +1,8 @@
+[package]
+name = "dom"
+version.workspace = true
+edition.workspace = true
+description = "DOM tree structures for the browser engine"
+
+[dependencies]
+thiserror = { workspace = true }

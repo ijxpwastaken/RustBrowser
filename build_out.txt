@@ -1,0 +1,243 @@
+﻿cargo : warning: 
+unused import: `Arc`
+At line:1 char:1
++ cargo build 
+--release 2>&1 | 
+Out-File -FilePath 
+build_out.txt -Encodi 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Ar    
+c`:String) [], Re    
+moteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\dom\src\no
+de.rs:4:17
+  |
+4 | use 
+std::sync::{Arc, 
+Weak, RwLock};
+  |                 
+^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `dom` (lib) 
+generated 1 warning 
+(run `cargo fix --lib 
+-p dom` to apply 1 
+suggestion)
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: 
+Option<Token>,
+   |     ^^^^^^^^^^^^^
+
+   Compiling 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+warning: unused 
+import: `Node`
+ --> crates\js_engine\
+src\dom_bridge.rs:9:11
+  |
+9 | use dom::{Node, 
+NodeRef, Document};
+  |           ^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+imports: 
+`Interpreter`, 
+`Parser`, and 
+`Tokenizer`
+ --> crates\js_engine\
+src\react.rs:6:32
+  |
+6 | use 
+crate::{JsError, 
+JsResult, Tokenizer, 
+Parser, Interpreter};
+  |                   
+             
+^^^^^^^^^  ^^^^^^  
+^^^^^^^^^^^
+
+   Compiling 
+browser_core v0.1.0 (C
+:\Users\IJXP\Pictures\
+browser\crates\browser
+_core)
+warning: field 
+`js_console` is never 
+read
+  --> crates\browser_c
+ore\src\lib.rs:28:5
+   |
+13 | pub struct 
+Browser {
+   |            
+------- field in this 
+struct
+...
+28 |     js_console: 
+Vec<String>,
+   |     ^^^^^^^^^^
+   |
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: fields 
+`bold`, `italic`, and 
+`link` are never read
+   --> crates\browser_
+core\src\lib.rs:563:5
+    |
+559 | struct 
+RenderItem {
+    |        
+---------- fields in 
+this struct
+...
+563 |     bold: bool,
+    |     ^^^^
+564 |     italic: 
+bool,
+    |     ^^^^^^
+565 |     link: 
+Option<String>,
+    |     ^^^^
+    |
+    = note: 
+`RenderItem` has 
+derived impls for the 
+traits `Clone` and 
+`Debug`, but these 
+are intentionally 
+ignored during dead 
+code analysis
+
+warning: `js_engine` 
+(lib) generated 2 
+warnings (run `cargo 
+fix --lib -p 
+js_engine` to apply 2 
+suggestions)
+warning: 
+`browser_core` (lib) 
+generated 2 warnings
+   Compiling browser 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser)
+warning: unused 
+import: `Token`
+ --> src\bin\test_toke
+nizer.rs:3:30
+  |
+3 | use html_parser::{
+Tokenizer, Token};
+  |                   
+           ^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `browser` 
+(bin 
+"test_tokenizer") 
+generated 1 warning 
+(run `cargo fix --bin 
+"test_tokenizer" -p 
+browser` to apply 1 
+suggestion)
+warning: constant 
+`TEXT_DARK` is never 
+used
+  --> src\main.rs:25:7
+   |
+25 | const TEXT_DARK: 
+Color = Color { r: 
+30, g: 30, b: 35, a: 
+255 };
+   |       ^^^^^^^^^
+   |
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: `browser` 
+(bin "browser") 
+generated 1 warning
+    Finished 
+`release` profile 
+[optimized] target(s) 
+in 1.89s

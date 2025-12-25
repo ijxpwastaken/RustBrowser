@@ -1,0 +1,19 @@
+[package]
+name = "browser_core"
+version.workspace = true
+edition.workspace = true
+description = "Main browser orchestration and threading"
+
+[dependencies]
+dom = { workspace = true }
+html_parser = { workspace = true }
+css_parser = { workspace = true }
+style = { workspace = true }
+layout = { workspace = true }
+render = { workspace = true }
+network = { workspace = true }
+js_engine = { workspace = true }
+thiserror = { workspace = true }
+log = { workspace = true }
+base64 = "0.21"
+image = "0.25"

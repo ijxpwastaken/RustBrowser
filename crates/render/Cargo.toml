@@ -1,0 +1,10 @@
+[package]
+name = "render"
+version.workspace = true
+edition.workspace = true
+description = "Rendering engine - paint commands and display"
+
+[dependencies]
+layout = { workspace = true }
+style = { workspace = true }
+softbuffer = { workspace = true }

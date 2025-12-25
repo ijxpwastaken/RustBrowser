@@ -1,0 +1,9 @@
+[package]
+name = "layout"
+version.workspace = true
+edition.workspace = true
+description = "Layout engine - box model and positioning"
+
+[dependencies]
+dom = { workspace = true }
+style = { workspace = true }

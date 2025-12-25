@@ -1,0 +1,13 @@
+[package]
+name = "network"
+version.workspace = true
+edition.workspace = true
+description = "Networking for resource loading"
+
+[dependencies]
+ureq = { version = "2.9", features = ["gzip", "brotli"] }
+thiserror = { workspace = true }
+image = "0.25"
+lazy_static = "1.4"
+pdf = "0.9"
+

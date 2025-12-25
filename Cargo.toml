@@ -1,0 +1,60 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/dom",
+    "crates/html_parser",
+    "crates/css_parser",
+    "crates/style",
+    "crates/layout",
+    "crates/render",
+    "crates/network",
+    "crates/browser_core",
+    "crates/js_engine",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Browser Project"]
+license = "MIT"
+
+[workspace.dependencies]
+# Internal crates
+dom = { path = "crates/dom" }
+html_parser = { path = "crates/html_parser" }
+css_parser = { path = "crates/css_parser" }
+style = { path = "crates/style" }
+layout = { path = "crates/layout" }
+render = { path = "crates/render" }
+network = { path = "crates/network" }
+browser_core = { path = "crates/browser_core" }
+js_engine = { path = "crates/js_engine" }
+
+
+# External dependencies
+winit = "0.29"
+softbuffer = "0.4"
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.11", features = ["stream"] }
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.10"
+arboard = "3.2"
+
+[package]
+name = "browser"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+browser_core.workspace = true
+dom.workspace = true
+html_parser.workspace = true
+render.workspace = true
+layout.workspace = true
+js_engine.workspace = true
+winit.workspace = true
+softbuffer.workspace = true
+log.workspace = true
+env_logger.workspace = true
+arboard = "3.2"

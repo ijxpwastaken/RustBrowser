@@ -1,0 +1,151 @@
+﻿cargo : warning: 
+unused import: `Arc`
+At line:1 char:1
++ cargo run --bin 
+test_tokenizer 2>&1 | 
+Out-File -FilePath 
+test_tok_out ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Ar    
+c`:String) [], Re    
+moteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\dom\src\no
+de.rs:4:17
+  |
+4 | use 
+std::sync::{Arc, 
+Weak, RwLock};
+  |                 
+^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `dom` (lib) 
+generated 1 warning 
+(run `cargo fix --lib 
+-p dom` to apply 1 
+suggestion)
+   Compiling 
+html_parser v0.1.0 (C:
+\Users\IJXP\Pictures\b
+rowser\crates\html_par
+ser)
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: 
+Option<Token>,
+   |     ^^^^^^^^^^^^^
+
+   Compiling 
+browser_core v0.1.0 (C
+:\Users\IJXP\Pictures\
+browser\crates\browser
+_core)
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+   Compiling browser 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser)
+warning: unused 
+import: `Token`
+ --> src\bin\test_toke
+nizer.rs:3:30
+  |
+3 | use html_parser::{
+Tokenizer, Token};
+  |                   
+           ^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `browser` 
+(bin 
+"test_tokenizer") 
+generated 1 warning 
+(run `cargo fix --bin 
+"test_tokenizer" -p 
+browser` to apply 1 
+suggestion)
+    Finished `dev` 
+profile [unoptimized 
++ debuginfo] 
+target(s) in 0.65s
+     Running `target\d
+ebug\test_tokenizer.ex
+e`
+=== Test 1: Simple tag ===
+Token 0: StartTag { name: "html", attributes: {}, self_closing: false }
+Token 1: EndTag { name: "html" }
+Token 2: Eof
+
+=== Test 2: With doctype ===
+Token 0: Doctype { name: "html", public_id: None, system_id: None }
+Token 1: StartTag { name: "html", attributes: {}, self_closing: false }
+Token 2: EndTag { name: "html" }
+Token 3: Eof
+
+=== Test 3: With doctype and newline ===
+Token 0: Doctype { name: "html", public_id: None, system_id: None }
+Token 1: Text("\n")
+Token 2: StartTag { name: "html", attributes: {}, self_closing: false }
+Token 3: EndTag { name: "html" }
+Token 4: Eof

@@ -1,0 +1,229 @@
+﻿cargo : warning: 
+unused import: `Arc`
+At line:1 char:1
++ cargo run --bin 
+js_demo 2>&1 | 
+Out-File -FilePath 
+js_demo_out.txt -En 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Ar    
+c`:String) [], Re    
+moteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\dom\src\no
+de.rs:4:17
+  |
+4 | use 
+std::sync::{Arc, 
+Weak, RwLock};
+  |                 
+^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: `dom` (lib) 
+generated 1 warning 
+(run `cargo fix --lib 
+-p dom` to apply 1 
+suggestion)
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: 
+Option<Token>,
+   |     ^^^^^^^^^^^^^
+
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+   Compiling 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+warning: fields 
+`bold`, `italic`, and 
+`link` are never read
+   --> crates\browser_
+core\src\lib.rs:506:5
+    |
+502 | struct 
+RenderItem {
+    |        
+---------- fields in 
+this struct
+...
+506 |     bold: bool,
+    |     ^^^^
+507 |     italic: 
+bool,
+    |     ^^^^^^
+508 |     link: 
+Option<String>,
+    |     ^^^^
+    |
+    = note: 
+`RenderItem` has 
+derived impls for the 
+traits `Clone` and 
+`Debug`, but these 
+are intentionally 
+ignored during dead 
+code analysis
+    = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: 
+`browser_core` (lib) 
+generated 1 warning
+   Compiling browser 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser)
+    Finished `dev` 
+profile [unoptimized 
++ debuginfo] 
+target(s) in 0.65s
+     Running `target\d
+ebug\js_demo.exe`
+=== Rust JavaScript Engine Demo ===
+
+Test 1: Simple arithmetic
+  Code: 1 + 2 * 3
+  Result: 7
+
+Test 2: Variables
+  Code: var x = 10; var y = 20; x + y
+  Result: 30
+
+Test 3: String concatenation
+  Code: 'Hello' + ' ' + 'World!'
+  Result: Hello World!
+
+Test 4: console.log
+  Code: console.log('Hello from JavaScript!'); console.log(1 + 2 + 3);
+[JS] Hello from JavaScript!
+[JS] Hello from JavaScript!
+[JS] 6
+[JS] 6
+  Result: undefined
+
+Test 5: Functions
+  Code: 
+[JS] add(5, 3) = 8
+[JS] add(5, 3) = 8
+  Result: undefined
+
+Test 6: If statements
+  Code: 
+[JS] x is greater than 5
+  Result: undefined
+
+Test 7: For loop
+  Code: 
+[JS] Sum of 1 to 5: 15
+[JS] Sum of 1 to 5: 15
+  Result: undefined
+
+Test 8: Objects
+  Code: 
+[JS] Name: John
+[JS] Name: John
+[JS] Age: 30
+[JS] Age: 30
+  Result: undefined
+
+Test 9: Arrays
+  Code: 
+[JS] Array length: 5
+[JS] Array length: 5
+[JS] First element: 1
+[JS] First element: 1
+  Result: undefined
+
+Test 10: Math object
+  Code: 
+[JS] Math.PI: 3.141592653589793
+[JS] Math.PI: 3.141592653589793
+[JS] Math.floor(3.7): 3
+[JS] Math.floor(3.7): 3
+[JS] Math.sqrt(16): 4
+[JS] Math.sqrt(16): 4
+[JS] Math.pow(2, 8): 256
+[JS] Math.pow(2, 8): 256
+  Result: undefined
+
+Test 11: Comparisons
+  Code: 
+[JS] 5 > 3: true
+[JS] 5 > 3: true
+[JS] 5 === 5: true
+[JS] 5 === 5: true
+[JS] true && false: false
+[JS] true && false: false
+[JS] true || false: true
+[JS] true || false: true
+  Result: undefined
+
+Test 12: Ternary operator
+  Code: 
+[JS] Status: adult
+[JS] Status: adult
+  Result: undefined
+
+=== Demo Complete ===

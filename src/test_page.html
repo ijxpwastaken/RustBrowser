@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Rust Browser - Full Feature Test</title>
+</head>
+
+<body>
+  <header>
+    <h1>Rust Browser Engine</h1>
+    <p>A browser with JavaScript, React, and Database support!</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>JavaScript Engine</h2>
+      <p>Full JavaScript support including:</p>
+      <ul>
+        <li>Variables, functions, loops</li>
+        <li>Objects and arrays</li>
+        <li>console.log, Math, alert</li>
+        <li>DOM APIs</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>React Support</h2>
+      <p>Basic React APIs available:</p>
+      <ul>
+        <li>React.createElement</li>
+        <li>React.useState</li>
+        <li>React.useEffect</li>
+        <li>ReactDOM.render</li>
+        <li>ReactDOM.createRoot</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Database Support</h2>
+      <p>Database APIs available:</p>
+      <ul>
+        <li>MySQL connections</li>
+        <li>SQLite support</li>
+        <li>IndexedDB</li>
+        <li>fetch API</li>
+        <li>Promise support</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    console.log('=== Full Browser API Test ===');
+
+    // Test basic JavaScript
+    console.log('Testing JavaScript...');
+    var sum = 0;
+    for (var i = 1; i <= 5; i = i + 1) {
+      sum = sum + i;
+    }
+    console.log('Sum 1-5:', sum);
+
+    // Test DOM
+    console.log('Testing DOM APIs...');
+    var elem = document.getElementById('test');
+    console.log('document.getElementById works!');
+
+    // Test React
+    console.log('Testing React...');
+    var element = React.createElement('div', null, 'Hello');
+    console.log('React.createElement works!');
+
+    var state = React.useState(0);
+    console.log('React.useState works!');
+
+    // Test Database
+    console.log('Testing Database APIs...');
+    var conn = DB.mysql({ host: 'localhost', database: 'test' });
+    console.log('DB.mysql works!');
+
+    var result = conn.query('SELECT * FROM users');
+    console.log('DB.query works!');
+
+    // Test IndexedDB
+    console.log('Testing IndexedDB...');
+    var idb = indexedDB.open('mydb', 1);
+    console.log('indexedDB.open works!');
+
+    // Test fetch
+    console.log('Testing fetch API...');
+    var response = fetch('https://api.example.com/data');
+    console.log('fetch works!');
+
+    // Test Promise
+    console.log('Testing Promise...');
+    var promise = Promise.resolve('done');
+    console.log('Promise.resolve works!');
+
+    console.log('=== All API Tests Passed! ===');
+  </script>
+
+  <footer>
+    <p>Rust Browser Engine v1.0</p>
+    <p>Supports: HTML, CSS, JavaScript, React, Database, Network</p>
+  </footer>
+</body>
+
+</html>

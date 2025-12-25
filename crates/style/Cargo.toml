@@ -1,0 +1,9 @@
+[package]
+name = "style"
+version.workspace = true
+edition.workspace = true
+description = "Style resolution engine"
+
+[dependencies]
+dom = { workspace = true }
+css_parser = { workspace = true }

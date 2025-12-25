@@ -1,0 +1,22 @@
+﻿cargo :     Finished 
+`dev` profile 
+[unoptimized + 
+debuginfo] target(s) 
+in 0.04s
+At line:1 char:1
++ cargo build -p 
+js_engine 2>&1 | 
+Out-File -FilePath 
+js_build.txt -Enco ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (    Finish   
+ ed `d...get(s) in    
+ 0.04s:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 

@@ -1,0 +1,10 @@
+[package]
+name = "html_parser"
+version.workspace = true
+edition.workspace = true
+description = "HTML5 tokenizer and parser"
+
+[dependencies]
+dom = { workspace = true }
+thiserror = { workspace = true }
+log = { workspace = true }

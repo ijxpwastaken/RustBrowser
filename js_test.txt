@@ -1,0 +1,50 @@
+﻿cargo :    Compiling 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+At line:1 char:1
++ cargo test -p 
+js_engine -- 
+--nocapture 2>&1 | 
+Out-File -FilePath 
+js_t ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (   Compili   
+ ng js...ates\js_e    
+ngine):String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+    Finished `test` 
+profile [unoptimized 
++ debuginfo] 
+target(s) in 0.50s
+     Running 
+unittests src\lib.rs (
+target\debug\deps\js_e
+ngine-379606fb1637ccbd
+.exe)
+
+running 7 tests
+test tokenizer::tests::test_keywords ... ok
+test tokenizer::tests::test_numbers ... ok
+test tokenizer::tests::test_operators ... ok
+test tokenizer::tests::test_strings ... ok
+test tests::test_variable ... ok
+test tests::test_simple_expression ... ok
+test tests::test_string ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests js_engine
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
