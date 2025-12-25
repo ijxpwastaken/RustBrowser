@@ -40,15 +40,7 @@ We love your input! We want to make contributing to RustBrowser as easy and tran
 
 If you're new to the project, here are some great places to start:
 
-### 1. Improve CSS Parsing
-**Difficulty**: Easy/Medium
-**Location**: `crates/style/src/parser.rs`
-**Task**: Currently, the CSS parser only handles basic selectors. We need help implementing:
-- Class selectors (`.classname`)
-- ID selectors (`#idname`)
-- Basic property parsing (e.g., `margin: 10px;`)
-
-### 2. Update Adblocker Lists
+### 1. Update Adblocker Lists
 **Difficulty**: Easy
 **Location**: `crates/browser_core/src/adblocker.rs`
 **Task**: The adblocker uses a static list. Implement a feature to:

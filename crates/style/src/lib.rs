@@ -324,7 +324,7 @@ impl ComputedStyle {
             "div" | "section" | "article" | "header" | "footer" | "main" | "nav" | "aside" => {
                 self.display = Display::Block;
             }
-            "span" | "a" | "strong" | "em" | "b" | "i" | "u" | "code" | "small" => {
+            "span" | "a" | "u" | "small" => {
                 self.display = Display::Inline;
             }
             "h1" => {
@@ -384,13 +384,20 @@ impl ComputedStyle {
             "td" | "th" => {
                 self.display = Display::TableCell;
             }
-            "pre" | "code" => {
+            "pre" => {
+                self.display = Display::Block;
+                self.font_family = "monospace".to_string();
+            }
+            "code" => {
+                self.display = Display::Inline;
                 self.font_family = "monospace".to_string();
             }
             "strong" | "b" => {
+                self.display = Display::Inline;
                 self.font_weight = FontWeight::Bold;
             }
             "em" | "i" => {
+                self.display = Display::Inline;
                 self.font_style = FontStyle::Italic;
             }
             "script" | "style" | "head" | "meta" | "link" | "title" => {
@@ -908,9 +915,21 @@ pub fn compute_styles(document: &Document, stylesheet: &Stylesheet) -> Option<Rc
 
             matching_rules.sort_by(|a, b| a.1.specificity.cmp(&b.1.specificity));
 
-            for (rule, _) in matching_rules {
+            // Phase 1: Normal declarations
+            for (rule, _) in &matching_rules {
                 for decl in &rule.declarations {
-                    style.apply_declaration(decl, parent_font_size);
+                    if !decl.important {
+                        style.apply_declaration(decl, parent_font_size);
+                    }
+                }
+            }
+
+            // Phase 2: Important declarations
+            for (rule, _) in &matching_rules {
+                for decl in &rule.declarations {
+                    if decl.important {
+                        style.apply_declaration(decl, parent_font_size);
+                    }
                 }
             }
 
