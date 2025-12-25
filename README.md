@@ -2,7 +2,7 @@
 > **Built from scratch in Rust. Zero Chrome/Firefox code. 100% memory-safe.**
 
 [![Rust](https://img.shields.io/badge/Rust-1.75+-orange.svg)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-Unlicense-blue.svg)](UNLICENSE)
 [![Speed](https://img.shields.io/badge/Speed-2.5x%20Faster-green.svg)](#benchmarks)
 [![Fingerprint](https://img.shields.io/badge/Fingerprint-100%25%20Protection-purple.svg)](#fingerprint-test)
 
@@ -145,7 +145,11 @@ println!("Total blocked: {}", shield.total_blocks());
 
 ## License
 
-MIT License
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+
+See [UNLICENSE](UNLICENSE) for more details.
 
 ---
 
