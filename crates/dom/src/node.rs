@@ -1,7 +1,7 @@
 //! Node types and base node structure
 
 use std::sync::atomic::{AtomicU64, Ordering};
-use std::sync::{Arc, Weak, RwLock};
+use std::sync::{Weak, RwLock};
 
 use crate::{Element, Text};
 

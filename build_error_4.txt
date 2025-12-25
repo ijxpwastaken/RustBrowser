@@ -1,0 +1,215 @@
+warning: unused import: `Specificity`
+ --> crates\style\src\lib.rs:6:47
+  |
+6 | ...t, Specificity, D...
+  |       ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Node`
+ --> crates\style\src\lib.rs:9:11
+  |
+9 | use dom::{Node, Node...
+  |           ^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> crates\style\src\lib.rs:10:5
+   |
+10 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unreachable pattern
+   --> crates\style\src\lib.rs:387:21
+    |
+327 | ..." | "a" | "strong" | "em" | "b" | "i" | "u" | "code" | ...
+    |                                                  ------ matches all the relevant values
+...
+387 | ... | "code" => {
+    |       ^^^^^^ no value can reach this
+    |
+    = note: `#[warn(unreachable_patterns)]` (part of `#[warn(unused)]`) on by default
+
+warning: unreachable pattern
+   --> crates\style\src\lib.rs:390:13
+    |
+327 | ...   "span" ..."small" => {
+    |       -------...------- matches all the relevant values
+...
+390 | ...   "strong" | "b" => {
+    |       ^^^^^^^^^^^^^^ no value can reach this
+
+warning: unreachable pattern
+   --> crates\style\src\lib.rs:393:13
+    |
+327 | ...   "span" ..."small" => {
+    |       -------...------- matches all the relevant values
+...
+393 | ...   "em" | "i" => {
+    |       ^^^^^^^^^^ no value can reach this
+
+warning: `style` (lib) generated 6 warnings (run `cargo fix --lib -p style` to apply 3 suggestions)
+warning: unused imports: `FontWeight` and `Position`
+ --> crates\layout\src\lib.rs:6:37
+  |
+6 | ...y, Position, FlexDirection, JustifyContent, AlignItems, FontWeight};
+  |       ^^^^^^^^                                             ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `is_reverse`
+   --> crates\layout\src\lib.rs:242:13
+    |
+242 | ...et is_reverse = ...
+    |       ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_is_reverse`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `i`
+   --> crates\layout\src\lib.rs:329:14
+    |
+329 | ...for (i, child) ...
+    |         ^ help: if this is intentional, prefix it with an underscore: `_i`
+
+warning: variants `CommentStart` and `Doctype` are never constructed
+  --> crates\html_parser\src\tokenizer.rs:56:5
+   |
+40 | enum State {
+   |      ----- variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `current_token` is never read
+  --> crates\html_parser\src\tokenizer.rs:69:5
+   |
+66 | pub struct Tokenizer<'a> {
+   |            --------- field in this struct
+...
+69 |     current_token: Opti...
+   |     ^^^^^^^^^^^^^
+
+warning: `layout` (lib) generated 3 warnings (run `cargo fix --lib -p layout` to apply 3 suggestions)
+warning: `html_parser` (lib) generated 2 warnings
+warning: unused import: `ApiAccessControl`
+  --> crates\js_engine\src\interpreter.rs:13:40
+   |
+13 | ...t, ApiAccessControl};
+   |       ^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::sync::Arc`
+  --> crates\js_engine\src\http_client.rs:10:5
+   |
+10 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `SoftwareRenderer`
+ --> crates\render\src\widgets.rs:1:20
+  |
+1 | ...r, SoftwareRenderer};
+  |       ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `buf_height`
+  --> crates\render\src\lib.rs:12:68
+   |
+12 | ...2, buf_height: u...
+   |       ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_buf_height`
+   |
+   = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `c`
+  --> crates\render\src\lib.rs:16:13
+   |
+16 | ... (i, c) in text....
+   |         ^ help: if this is intentional, prefix it with an underscore: `_c`
+
+warning: unused variable: `max_redirects`
+   --> crates\network\src\lib.rs:157:49
+    |
+157 | ...r, max_redirects: u...
+    |       ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_max_redirects`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `js_engine` (lib) generated 2 warnings (run `cargo fix --lib -p js_engine` to apply 2 suggestions)
+warning: `render` (lib) generated 3 warnings (run `cargo fix --lib -p render` to apply 3 suggestions)
+warning: `network` (lib) generated 1 warning (run `cargo fix --lib -p network` to apply 1 suggestion)
+warning: unused import: `Duration`
+ --> crates\browser_core\src\video.rs:8:17
+  |
+8 | use std::time::{Duration, Instant};
+  |                 ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `italic` is never read
+    --> crates\browser_core\src\lib.rs:1123:5
+     |
+1118 | struct RenderItem {
+     |        ---------- field in this struct
+...
+1123 |     italic: bool,
+     |     ^^^^^^
+     |
+     = note: `RenderItem` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+     = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `browser_core` (lib) generated 2 warnings (run `cargo fix --lib -p browser_core` to apply 1 suggestion)
+    Checking browser v0.1.0 (C:\Users\IJXP\Pictures\browser)
+warning: fields `id` and `name` are never read
+  --> src\bin\benchmark.rs:50:19
+   |
+50 |     struct Item { id: i32, name: String, value: f64 }
+   |            ----   ^^       ^^^^
+   |            |
+   |            fields in this struct
+   |
+   = note: `Item` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `Token`
+ --> src\bin\test_tokenizer.rs:3:30
+  |
+3 | use html_parser::{Tokenizer, Token};
+  |                              ^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `browser` (bin "benchmark") generated 1 warning
+warning: `browser` (bin "test_tokenizer") generated 1 warning (run `cargo fix --bin "test_tokenizer" -p browser` to apply 1 suggestion)
+error: mismatched closing delimiter: `)`
+   --> src\main.rs:134:39
+    |
+134 |     event_loop.run(move |event, elwt| {
+    |                   -                   ^ unclosed delimiter
+    |                   |
+    |                   closing delimiter possibly meant for this
+...
+409 |     }).unwrap();
+    |      ^ mismatched closing delimiter
+
+error: could not compile `browser` (bin "browser") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error[E0277]: `JsValue` doesn't implement `std::fmt::Display`
+   --> src\bin\js_demo.rs:102:48
+    |
+102 |         Ok(result) => println!("  Result: {}", result),
+    |                                           --   ^^^^^^ `JsValue` cannot be formatted with the default formatter
+    |                                           |
+    |                                           required by this formatting parameter
+    |
+    = help: the trait `std::fmt::Display` is not implemented for `JsValue`
+    = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+    = note: this error originates in the macro `$crate::format_args_nl` which comes from the expansion of the macro `println` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `browser` (bin "js_demo") due to 1 previous error

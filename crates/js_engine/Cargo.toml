@@ -12,3 +12,7 @@ lazy_static = "1.4"
 ureq = "2.9"
 parking_lot = "0.12"
 serde_json = "1.0"
+boa_engine = "0.19"
+boa_gc = "0.19"
+half = "2.3"  # For Math.f16round() half-precision floats
+regex = "1.10"  # For RegExp.escape()

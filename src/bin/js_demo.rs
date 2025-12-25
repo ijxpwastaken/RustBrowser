@@ -99,7 +99,7 @@ fn main() {
 fn run_js(code: &str) {
     println!("  Code: {}", code.lines().next().unwrap_or(code).trim());
     match js_engine::execute(code) {
-        Ok(result) => println!("  Result: {}", result),
+        Ok(result) => println!("  Result: {:?}", result),
         Err(e) => println!("  Error: {}", e),
     }
 }

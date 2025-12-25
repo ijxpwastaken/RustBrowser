@@ -2,6 +2,7 @@
 //! 
 //! A basic JavaScript interpreter for the browser.
 //! Supports: variables, functions, console.log, basic DOM access, React, Database
+//! ES2025: Promise.try(), Math.f16round(), RegExp.escape(), Set union/intersection
 
 pub mod tokenizer;
 pub mod parser;
@@ -15,6 +16,7 @@ pub mod database;
 pub mod nextjs;
 pub mod security;
 pub mod http_client;
+pub mod js_runtime;
 
 pub use tokenizer::{Tokenizer, Token, TokenType};
 pub use parser::Parser;
@@ -25,6 +27,7 @@ pub use dom_bridge::DomBridge;
 pub use react::{JsxParser, ReactRuntime, create_react_object, create_react_dom_object};
 pub use database::{create_database_object, create_indexed_db_object, create_fetch_function};
 pub use nextjs::{create_nextjs_object, create_next_router_object, create_next_link_component, create_next_image_component, create_next_head_component, create_next_script_component, create_use_router_hook, create_use_pathname_hook, create_use_search_params_hook};
+pub use js_runtime::{BoaRuntime, math_f16round, regexp_escape, set_union, set_intersection, set_difference, set_symmetric_difference};
 
 use thiserror::Error;
 

@@ -61,11 +61,17 @@ pub struct Cookie {
 }
 
 /// Cached image data
+/// Cached image data (Bitmap or SVG)
 #[derive(Debug, Clone)]
-pub struct ImageData {
-    pub width: u32,
-    pub height: u32,
-    pub pixels: Vec<u8>,
+pub enum ImageData {
+    Bitmap {
+        width: u32,
+        height: u32,
+        pixels: Vec<u8>,
+    },
+    Svg {
+        data: String,
+    },
 }
 
 impl Browser {
@@ -88,6 +94,16 @@ impl Browser {
             history_index: 0,
             resource_cache: HashMap::new(),
         }
+    }
+
+    /// Clear all internal caches to free memory
+    pub fn clear_cache(&mut self) {
+        println!("[Browser] Clearing caches...");
+        self.resource_cache.clear();
+        self.images.clear();
+        self.pdfs.clear();
+        self.js_console.clear(); // clear console too
+        println!("[Browser] Cache cleared.");
     }
 
     /// Load a URL (supports http/https via network module)
@@ -462,7 +478,8 @@ impl Browser {
                                         .unwrap_or_else(|| "[Image]".to_string());
                                     
                                     // Try to load the image
-                                    self.load_image_if_needed(src);
+                                    let resolved_src = self.resolve_url(src);
+                                    self.load_image_if_needed(&resolved_src);
                                     
                                     items.push(RenderItem {
                                         content: alt,
@@ -472,7 +489,7 @@ impl Browser {
                                         italic: false,
                                         link: None,
                                         color: [100, 100, 100, 255],
-                                        image_url: Some(src.clone()),
+                                        image_url: Some(resolved_src),
                                     });
                                 }
                                 continue;
@@ -487,7 +504,8 @@ impl Browser {
                                 
                                 // Try to load video poster if available
                                 if let Some(ref poster_url) = poster {
-                                    self.load_image_if_needed(poster_url);
+                                    let resolved = self.resolve_url(poster_url);
+                                    self.load_image_if_needed(&resolved);
                                 }
                                 
                                 items.push(RenderItem {
@@ -528,19 +546,19 @@ impl Browser {
                                 
                                 // Only show text inputs, search inputs
                                 if input_type == "text" || input_type == "search" || input_type == "email" || input_type == "password" {
-                                    let content = value.or(placeholder).unwrap_or_default();
-                                    if !content.is_empty() {
-                                        items.push(RenderItem {
-                                            content: format!("[{}]", content),
-                                            item_type: ItemType::Input,
-                                            font_size: 14.0,
-                                            bold: false,
-                                            italic: false,
-                                            link: None,
-                                            color: [100, 100, 100, 255],
-                                            image_url: None,
-                                        });
-                                    }
+                                    let content = value.or(placeholder).unwrap_or_else(|| "".to_string());
+                                    
+                                    // Always render input box even if empty
+                                    items.push(RenderItem {
+                                        content: if content.is_empty() { " ".to_string() } else { content },
+                                        item_type: ItemType::Input,
+                                        font_size: 14.0,
+                                        bold: false,
+                                        italic: false,
+                                        link: None,
+                                        color: [100, 100, 100, 255],
+                                        image_url: None,
+                                    });
                                 }
                                 continue;
                             }
@@ -590,9 +608,26 @@ impl Browser {
         // Only load http/https images
         if url.starts_with("http://") || url.starts_with("https://") {
             println!("[Browser] Loading image: {}", url);
+            
+            // Check for SVG
+            if url.ends_with(".svg") {
+                match network::HttpClient::fetch_sync(url) {
+                    Ok(svg_data) => {
+                        self.images.insert(url.to_string(), ImageData::Svg {
+                            data: svg_data,
+                        });
+                        println!("[Browser] SVG loaded");
+                    }
+                    Err(e) => {
+                        eprintln!("[Browser] Failed to load SVG: {}", e);
+                    }
+                }
+                return;
+            }
+            
             match network::get_or_fetch_image(url) {
                 Ok(img) => {
-                    self.images.insert(url.to_string(), ImageData {
+                    self.images.insert(url.to_string(), ImageData::Bitmap {
                         width: img.width,
                         height: img.height,
                         pixels: img.pixels,
@@ -636,9 +671,10 @@ impl Browser {
         // Try to decode as image
         match image::load_from_memory(data) {
             Ok(img) => {
+
                 let rgba = img.to_rgba8();
                 let (width, height) = rgba.dimensions();
-                Some(ImageData {
+                Some(ImageData::Bitmap {
                     width,
                     height,
                     pixels: rgba.into_raw(),
@@ -679,23 +715,43 @@ impl Browser {
             if item.item_type == ItemType::Image {
                 if let Some(ref url) = item.image_url {
                     if let Some(img) = self.images.get(url) {
-                        // Scale image to fit
-                        let scale = (max_width / img.width as f64).min(1.0);
-                        let display_width = (img.width as f64 * scale) as u32;
-                        let display_height = (img.height as f64 * scale) as u32;
-                        
-                        self.display_list.push(DisplayCommand::Image {
-                            data: img.pixels.clone(),
-                            width: img.width,
-                            height: img.height,
-                            rect: Rect {
-                                x: margin_left,
-                                y,
-                                width: display_width as f64,
-                                height: display_height as f64,
+                        match img {
+                            ImageData::Bitmap { width, height, pixels } => {
+                                // Scale image to fit
+                                let scale = (max_width / *width as f64).min(1.0);
+                                let display_width = (*width as f64 * scale) as u32;
+                                let display_height = (*height as f64 * scale) as u32;
+                                
+                                self.display_list.push(DisplayCommand::Image {
+                                    data: pixels.clone(),
+                                    width: *width,
+                                    height: *height,
+                                    rect: Rect {
+                                        x: margin_left,
+                                        y,
+                                        width: display_width as f64,
+                                        height: display_height as f64,
+                                    },
+                                });
+                                y += display_height as f64 + 10.0;
                             },
-                        });
-                        y += display_height as f64 + 10.0;
+                            ImageData::Svg { data } => {
+                                // Assume reasonable default size for SVG if not specified
+                                let display_width = 300.0; 
+                                let display_height = 100.0; 
+                                
+                                self.display_list.push(DisplayCommand::SvgImage {
+                                    svg_data: data.clone(),
+                                    rect: Rect {
+                                        x: margin_left,
+                                        y,
+                                        width: display_width,
+                                        height: display_height,
+                                    },
+                                });
+                                y += display_height + 10.0;
+                            }
+                        }
                         continue;
                     }
                 }
@@ -728,21 +784,36 @@ impl Browser {
                 // Draw poster image if available
                 if let Some(ref poster_url) = item.image_url {
                     if let Some(img) = self.images.get(poster_url) {
-                        let scale = (video_width / img.width as f64).min(video_height / img.height as f64).min(1.0);
-                        let display_width = (img.width as f64 * scale) as u32;
-                        let display_height = (img.height as f64 * scale) as u32;
-                        
-                        self.display_list.push(DisplayCommand::Image {
-                            data: img.pixels.clone(),
-                            width: img.width,
-                            height: img.height,
-                            rect: Rect {
-                                x: margin_left + (video_width - display_width as f64) / 2.0,
-                                y: y + (video_height - display_height as f64) / 2.0,
-                                width: display_width as f64,
-                                height: display_height as f64,
+                        match img {
+                            ImageData::Bitmap { width, height, pixels } => {
+                                let scale = (video_width / *width as f64).min(video_height / *height as f64).min(1.0);
+                                let display_width = (*width as f64 * scale) as u32;
+                                let display_height = (*height as f64 * scale) as u32;
+                                
+                                self.display_list.push(DisplayCommand::Image {
+                                    data: pixels.clone(),
+                                    width: *width,
+                                    height: *height,
+                                    rect: Rect {
+                                        x: margin_left + (video_width - display_width as f64) / 2.0,
+                                        y: y + (video_height - display_height as f64) / 2.0,
+                                        width: display_width as f64,
+                                        height: display_height as f64,
+                                    },
+                                });
                             },
-                        });
+                            ImageData::Svg { data } => {
+                                self.display_list.push(DisplayCommand::SvgImage {
+                                    svg_data: data.clone(),
+                                    rect: Rect {
+                                        x: margin_left,
+                                        y,
+                                        width: video_width,
+                                        height: video_height,
+                                    },
+                                });
+                            }
+                        }
                     }
                 }
                 
@@ -1017,13 +1088,7 @@ impl Browser {
         Ok(())
     }
     
-    /// Clear resource cache
-    pub fn clear_cache(&mut self) {
-        self.resource_cache.clear();
-        self.images.clear();
-        self.pdfs.clear();
-        println!("[Browser] Cache cleared");
-    }
+
 }
 
 /// Render context for styling

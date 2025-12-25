@@ -1,0 +1,756 @@
+cargo : warning: 
+unused import: 
+`Specificity`
+At line:1 char:49
++ ... ender.log 2>&1 
+; cargo check -p 
+browser_core > 
+check_browser.log 2>&1
++                     
+ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Sp    
+ecificity`:String    
+) [], RemoteExcep    
+tion
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\style\src\
+lib.rs:6:47
+  |
+6 | ...t, 
+Specificity, D...
+  |       ^^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: `Node`
+ --> crates\style\src\
+lib.rs:9:11
+  |
+9 | use dom::{Node, 
+N...
+  |           ^^^^
+
+warning: unused 
+import: `std::collecti
+ons::HashMap`
+  --> crates\style\src
+\lib.rs:10:5
+   |
+10 | use std::collecti
+ons::HashMap;
+   |     ^^^^^^^^^^^^^
+^^^^^^^^^^^^
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:387:21
+    |
+327 | ..." | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| ...
+    |                 
+                      
+           ------ 
+matches all the 
+relevant values
+...
+387 | ... | "code" => 
+{
+    |       ^^^^^^ no 
+value can reach this
+    |
+    = note: `#[warn(un
+reachable_patterns)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:390:13
+    |
+327 | ...   
+"span"...small" => {
+    |       
+------...------ 
+matches all the 
+relevant values
+...
+390 | ...   "strong" 
+| "b" => {
+    |       
+^^^^^^^^^^^^^^ no 
+value can reach this
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:393:13
+    |
+327 | ...   
+"span"...small" => {
+    |       
+------...------ 
+matches all the 
+relevant values
+...
+393 | ...   "em" | 
+"i" => {
+    |       
+^^^^^^^^^^ no value 
+can reach this
+
+warning: `style` 
+(lib) generated 6 
+warnings (run `cargo 
+fix --lib -p style` 
+to apply 3 
+suggestions)
+warning: unused 
+imports: `FontWeight` 
+and `Position`
+ --> crates\layout\src
+\lib.rs:6:37
+  |
+6 | ...y, Position, 
+FlexDirection, 
+JustifyContent, 
+AlignItems, 
+FontWeight};
+  |       ^^^^^^^^    
+                      
+                   
+^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+variable: `is_reverse`
+   --> crates\layout\s
+rc\lib.rs:242:13
+    |
+242 | ...et 
+is_reverse = ...
+    |       
+^^^^^^^^^^ help: if 
+this is intentional, 
+prefix it with an 
+underscore: 
+`_is_reverse`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unused 
+variable: `i`
+   --> crates\layout\s
+rc\lib.rs:329:14
+    |
+329 | ...for (i, 
+chil...
+    |         ^ help: 
+if this is 
+intentional, prefix 
+it with an 
+underscore: `_i`
+
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: Opti...
+   |     ^^^^^^^^^^^^^
+
+warning: `layout` 
+(lib) generated 3 
+warnings (run `cargo 
+fix --lib -p layout` 
+to apply 3 
+suggestions)
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+    Checking 
+boa_engine v0.18.0
+warning: unused 
+variable: 
+`max_redirects`
+   --> crates\network\
+src\lib.rs:157:49
+    |
+157 | ...r, 
+max_redirects: u...
+    |       
+^^^^^^^^^^^^^ help: 
+if this is 
+intentional, prefix 
+it with an 
+underscore: 
+`_max_redirects`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+    Checking render 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser\crate
+s\render)
+warning: `network` 
+(lib) generated 1 
+warning (run `cargo 
+fix --lib -p network` 
+to apply 1 suggestion)
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:444:26
+    |
+444 |     fn fill_roun
+ded_rect(&mut self, 
+rect: &LayoutRect, 
+color: &Color, 
+radius: f64) {
+    |                 
+         ^^^^^^^^^ 
+not semantically 
+valid as function 
+parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:493:20
+    |
+493 |     fn 
+draw_border(&mut 
+self, rect: 
+&LayoutRect, color: 
+&Color, width: 
+&EdgeWidths, _radius: 
+f64) {
+    |                 
+   ^^^^^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:535:18
+    |
+535 |     fn 
+draw_text(&mut self, 
+text: &str, x: f64, 
+y: f64, color: 
+&Color, font_size: 
+f64, font_weight: 
+FontWeight, 
+underline: bool) {
+    |                 
+ ^^^^^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:563:25
+    |
+563 |     fn 
+draw_simple_char(&mut 
+self, ch: char, x: 
+u32, y: u32, w: u32, 
+h: u32, color: 
+&Color, bold: bool) {
+    |                 
+        ^^^^^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:694:19
+    |
+694 |     fn 
+draw_image(&mut self, 
+data: &[u8], 
+img_width: u32, 
+img_height: u32, 
+rect: &LayoutRect) {
+    |                 
+  ^^^^^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:742:18
+    |
+742 |     fn 
+draw_line(&mut self, 
+x1: f64, y1: f64, x2: 
+f64, y2: f64, color: 
+&Color) {
+    |                 
+ ^^^^^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error: `self` 
+parameter is only 
+allowed in associated 
+functions
+   --> crates\render\s
+rc\lib.rs:782:23
+    |
+782 |     pub fn 
+get_buffer(&self) -> 
+&[u32] {
+    |                 
+      ^^^^^ not 
+semantically valid as 
+function parameter
+    |
+    = note: 
+associated functions 
+are those in `impl` 
+or `trait` definitions
+
+error[E0599]: no 
+method named 
+`fill_rounded_rect` 
+found for mutable 
+reference `&mut 
+SoftwareRenderer` in 
+the current scope
+   --> crates\render\s
+rc\lib.rs:295:26
+    |
+295 |                 
+    self.fill_rounded_
+rect(rect, color, 
+*radius);
+    |                 
+         
+^^^^^^^^^^^^^^^^^
+    |
+help: there is a 
+method `fill_rect` 
+with a similar name, 
+but with different 
+arguments
+   --> crates\render\s
+rc\lib.rs:321:5
+    |
+321 |     fn 
+fill_rect(&mut self, 
+rect: &LayoutRect, 
+color: &Color) {
+    |     ^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^
+
+error[E0599]: no 
+method named 
+`draw_border` found 
+for mutable reference 
+`&mut 
+SoftwareRenderer` in 
+the current scope
+   --> crates\render\s
+rc\lib.rs:298:26
+    |
+298 |                 
+    self.draw_border(r
+ect, color, width, 
+*radius);
+    |                 
+         ^^^^^^^^^^^ 
+method not found in 
+`&mut 
+SoftwareRenderer`
+
+error[E0599]: no 
+method named 
+`draw_text` found for 
+mutable reference 
+`&mut 
+SoftwareRenderer` in 
+the current scope
+   --> crates\render\s
+rc\lib.rs:301:26
+    |
+301 |                 
+    
+self.draw_text(text, 
+*x, *y, color, 
+*font_size, 
+*font_weight, 
+*underline);
+    |                 
+         ^^^^^^^^^ 
+method not found in 
+`&mut 
+SoftwareRenderer`
+
+error[E0599]: no 
+method named 
+`draw_image` found 
+for mutable reference 
+`&mut 
+SoftwareRenderer` in 
+the current scope
+   --> crates\render\s
+rc\lib.rs:304:26
+    |
+304 |                 
+    
+self.draw_image(data, 
+*img_w, *img_h, rect);
+    |                 
+         ^^^^^^^^^^
+    |
+help: there is a 
+method `draw_svg` 
+with a similar name, 
+but with different 
+arguments
+   --> crates\render\s
+rc\lib.rs:317:5
+    |
+317 |     fn 
+draw_svg(&mut self, 
+svg_data: &str, rect: 
+&LayoutRect) {
+    |     ^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
+^
+
+error[E0599]: no 
+method named 
+`draw_line` found for 
+mutable reference 
+`&mut 
+SoftwareRenderer` in 
+the current scope
+   --> crates\render\s
+rc\lib.rs:310:26
+    |
+310 |                 
+    
+self.draw_line(*x1, 
+*y1, *x2, *y2, color);
+    |                 
+         ^^^^^^^^^ 
+method not found in 
+`&mut 
+SoftwareRenderer`
+
+For more information 
+about this error, try 
+`rustc --explain 
+E0599`.
+error: could not 
+compile `render` 
+(lib) due to 12 
+previous errors
+warning: build 
+failed, waiting for 
+other jobs to 
+finish...
+error[E0277]: `Cell<Op
+tion<NonNull<LinkedLis
+tLink>>>` cannot be 
+shared between 
+threads safely
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\boa_engine-0.1
+8.0\src\builtins\atomi
+cs\futex.rs:161:37
+    |
+161 | pub(crate) 
+static 
+CRITICAL_SECTION: 
+Mutex<FutexWaiters> = 
+Mutex::new(FutexWaiter
+s {
+    |                 
+                    
+^^^^^^^^^^^^^^^^^^^ `C
+ell<Option<NonNull<Lin
+kedListLink>>>` 
+cannot be shared 
+between threads safely
+    |
+    = help: within 
+`FutexWaiter`, the 
+trait `Sync` is not 
+implemented for `Cell<
+Option<NonNull<LinkedL
+istLink>>>`
+    = note: if you 
+want to do aliasing 
+and mutation between 
+multiple threads, use 
+`std::sync::RwLock`
+note: required 
+because it appears 
+within the type 
+`LinkedListLink`
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\intrusive-coll
+ections-0.9.7\src\link
+ed_list.rs:63:12
+    |
+ 63 | pub struct Link 
+{
+    |            ^^^^
+note: required 
+because it appears 
+within the type 
+`FutexWaiter`
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\boa_engine-0.1
+8.0\src\builtins\atomi
+cs\futex.rs:167:19
+    |
+167 | pub(crate) 
+struct FutexWaiter {
+    |                 
+  ^^^^^^^^^^^
+    = note: required 
+for `UnsafeRef<FutexWa
+iter>` to implement 
+`Send`
+    = note: 2 
+redundant 
+requirements hidden
+    = note: required 
+for `NodeRef<Owned, 
+usize, LinkedList<Fute
+xWaiterAdapter>, 
+LeafOrInternal>` to 
+implement `Send`
+note: required 
+because it appears 
+within the type `Optio
+n<NodeRef<Owned, 
+usize, LinkedList<Fute
+xWaiterAdapter>, 
+...>>`
+   --> /rustc/ded5c06c
+f21d2b93bffd5d884aa6e9
+6934ee4234\library\cor
+e\src\option.rs:599:10
+note: required 
+because it appears 
+within the type 
+`BTreeMap<usize, intru
+sive_collections::Link
+edList<FutexWaiterAdap
+ter>>`
+   --> /rustc/ded5c06c
+f21d2b93bffd5d884aa6e9
+6934ee4234\library\all
+oc\src\collections\btr
+ee\map.rs:189:12
+note: required 
+because it appears 
+within the type `small
+_map::Inner<usize, int
+rusive_collections::Li
+nkedList<FutexWaiterAd
+apter>, 16>`
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\boa_engine-0.1
+8.0\src\small_map\mod.
+rs:30:6
+    |
+ 30 | enum Inner<K, 
+V, const ARRAY_SIZE: 
+usize> {
+    |      ^^^^^
+note: required 
+because it appears 
+within the type 
+`SmallMap<usize, intru
+sive_collections::Link
+edList<FutexWaiterAdap
+ter>, 16>`
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\boa_engine-0.1
+8.0\src\small_map\mod.
+rs:25:19
+    |
+ 25 | pub(crate) 
+struct SmallMap<K, V, 
+const ARRAY_SIZE: 
+usize> {
+    |                 
+  ^^^^^^^^
+note: required 
+because it appears 
+within the type 
+`FutexWaiters`
+   --> C:\Users\IJXP\.
+cargo\registry\src\ind
+ex.crates.io-1949cf8c6
+b5b557f\boa_engine-0.1
+8.0\src\builtins\atomi
+cs\futex.rs:178:19
+    |
+178 | pub(crate) 
+struct FutexWaiters {
+    |                 
+  ^^^^^^^^^^^^
+    = note: required 
+for `std::sync::Mutex<
+FutexWaiters>` to 
+implement `Sync`
+    = note: shared 
+static variables must 
+have a type that 
+implements `Sync`
+    = note: the full 
+name for the type has 
+been written to 'C:\Us
+ers\IJXP\Pictures\brow
+ser\target\debug\deps\
+boa_engine-683a2f627ff
+e4951.long-type-448483
+3320616509211.txt'
+    = note: consider 
+using `--verbose` to 
+print the full type 
+name to the console
+
+For more information 
+about this error, try 
+`rustc --explain 
+E0277`.
+error: could not 
+compile `boa_engine` 
+(lib) due to 1 
+previous error

@@ -1,0 +1,240 @@
+cargo : warning: 
+unused import: 
+`Specificity`
+At line:1 char:1
++ cargo check -p 
+render > 
+check_render_v4.log 
+2>&1 ; cargo check -p 
+js_ ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (warning: u   
+ nused import: `Sp    
+ecificity`:String    
+) [], RemoteExcep    
+tion
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+ --> crates\style\src\
+lib.rs:6:47
+  |
+6 |     Stylesheet, 
+Rule, Selector, 
+SelectorPart, 
+Specificity, 
+Declaration,
+  |                   
+                      
+      ^^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: `Node`
+ --> crates\style\src\
+lib.rs:9:11
+  |
+9 | use dom::{Node, 
+NodeRef, Element, 
+Document};
+  |           ^^^^
+
+warning: unused 
+import: `std::collecti
+ons::HashMap`
+  --> crates\style\src
+\lib.rs:10:5
+   |
+10 | use std::collecti
+ons::HashMap;
+   |     ^^^^^^^^^^^^^
+^^^^^^^^^^^^
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:387:21
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |                 
+                      
+                      
+   ------ matches all 
+the relevant values
+...
+387 |             
+"pre" | "code" => {
+    |                 
+    ^^^^^^ no value 
+can reach this
+    |
+    = note: `#[warn(un
+reachable_patterns)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:390:13
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |             ----
+----------------------
+----------------------
+------------------- 
+matches all the 
+relevant values
+...
+390 |             
+"strong" | "b" => {
+    |             
+^^^^^^^^^^^^^^ no 
+value can reach this
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:393:13
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |             ----
+----------------------
+----------------------
+------------------- 
+matches all the 
+relevant values
+...
+393 |             
+"em" | "i" => {
+    |             
+^^^^^^^^^^ no value 
+can reach this
+
+warning: `style` 
+(lib) generated 6 
+warnings (run `cargo 
+fix --lib -p style` 
+to apply 3 
+suggestions)
+warning: unused 
+imports: `FontWeight` 
+and `Position`
+ --> crates\layout\src
+\lib.rs:6:37
+  |
+6 | use style::{Comput
+edStyle, Display, 
+Position, 
+FlexDirection, 
+JustifyContent, 
+AlignItems, 
+FontWeight};
+  |                   
+                  
+^^^^^^^^              
+                      
+         ^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+variable: `is_reverse`
+   --> crates\layout\s
+rc\lib.rs:242:13
+    |
+242 |         let 
+is_reverse = matches!(
+s.flex_direction, Flex
+Direction::RowReverse 
+| FlexDirection::Colum
+nReverse);
+    |             
+^^^^^^^^^^ help: if 
+this is intentional, 
+prefix it with an 
+underscore: 
+`_is_reverse`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unused 
+variable: `i`
+   --> crates\layout\s
+rc\lib.rs:329:14
+    |
+329 |         for (i, 
+child) in self.childre
+n.iter_mut().enumerate
+() {
+    |              ^ 
+help: if this is 
+intentional, prefix 
+it with an 
+underscore: `_i`
+
+warning: `layout` 
+(lib) generated 3 
+warnings (run `cargo 
+fix --lib -p layout` 
+to apply 3 
+suggestions)
+    Checking render 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser\crate
+s\render)
+error: unexpected 
+closing delimiter: `}`
+   --> crates\render\s
+rc\lib.rs:325:1
+    |
+275 | impl 
+SoftwareRenderer {
+    |                 
+      - this 
+delimiter might not 
+be properly closed...
+...
+324 |     }
+    |     - ...as it 
+matches this but it 
+has different 
+indentation
+325 | } // End impl 
+SoftwareRenderer
+    | ^ unexpected 
+closing delimiter
+
+error: could not 
+compile `render` 
+(lib) due to 1 
+previous error

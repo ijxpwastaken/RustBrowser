@@ -1,0 +1,405 @@
+cargo :    Compiling 
+icu_properties v1.5.1
+At line:1 char:1
++ cargo build 
+--release 2>&1 | 
+Out-File -Encoding 
+ascii build_v3.log
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (   Compili   
+ ng icu_properties    
+ v1.5.1:String) [    
+], RemoteExceptio    n
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+   Compiling boa_ast 
+v0.19.1
+warning: unused 
+import: `Specificity`
+ --> crates\style\src\
+lib.rs:6:47
+  |
+6 | ...t, 
+Specificity, D...
+  |       ^^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: `Node`
+ --> crates\style\src\
+lib.rs:9:11
+  |
+9 | ...m::{Node, No...
+  |        ^^^^
+
+warning: unused 
+import: `std::collecti
+ons::HashMap`
+  --> crates\style\src
+\lib.rs:10:5
+   |
+10 | use std::collecti
+ons::HashMap;
+   |     ^^^^^^^^^^^^^
+^^^^^^^^^^^^
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:387:21
+    |
+327 | ..." | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| ...
+    |                 
+                      
+           ------ 
+matches all the 
+relevant values
+...
+387 | ... | "code" => 
+{
+    |       ^^^^^^ no 
+value can reach this
+    |
+    = note: `#[warn(un
+reachable_patterns)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:390:13
+    |
+327 | ...   
+"span...mall" => {
+    |       
+-----...----- matches 
+all the relevant 
+values
+...
+390 | ...   "strong" 
+| "b" => {
+    |       
+^^^^^^^^^^^^^^ no 
+value can reach this
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:393:13
+    |
+327 | ...   
+"span...mall" => {
+    |       
+-----...----- matches 
+all the relevant 
+values
+...
+393 | ...   "em" | 
+"i" => {
+    |       
+^^^^^^^^^^ no value 
+can reach this
+
+warning: `style` 
+(lib) generated 6 
+warnings (run `cargo 
+fix --lib -p style` 
+to apply 3 
+suggestions)
+warning: unused 
+imports: `FontWeight` 
+and `Position`
+ --> crates\layout\src
+\lib.rs:6:37
+  |
+6 | ...y, Position, 
+FlexDirection, 
+JustifyContent, 
+AlignItems, 
+FontWeight};
+  |       ^^^^^^^^    
+                      
+                   
+^^^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+variable: `is_reverse`
+   --> crates\layout\s
+rc\lib.rs:242:13
+    |
+242 | ...et 
+is_reverse = ...
+    |       
+^^^^^^^^^^ help: if 
+this is intentional, 
+prefix it with an 
+underscore: 
+`_is_reverse`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unused 
+variable: `i`
+   --> crates\layout\s
+rc\lib.rs:329:14
+    |
+329 | ...r (i, chil...
+    |       ^ help: 
+if this is 
+intentional, prefix 
+it with an 
+underscore: `_i`
+
+warning: variants 
+`CommentStart` and 
+`Doctype` are never 
+constructed
+  --> crates\html_pars
+er\src\tokenizer.rs:56
+:5
+   |
+40 | enum State {
+   |      ----- 
+variants in this enum
+...
+56 |     CommentStart,
+   |     ^^^^^^^^^^^^
+...
+59 |     Doctype,
+   |     ^^^^^^^
+   |
+   = note: `State` 
+has derived impls for 
+the traits `Clone` 
+and `Debug`, but 
+these are 
+intentionally ignored 
+during dead code 
+analysis
+   = note: 
+`#[warn(dead_code)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: field 
+`current_token` is 
+never read
+  --> crates\html_pars
+er\src\tokenizer.rs:69
+:5
+   |
+66 | pub struct 
+Tokenizer<'a> {
+   |            
+--------- field in 
+this struct
+...
+69 |     
+current_token: Opti...
+   |     ^^^^^^^^^^^^^
+
+warning: `layout` 
+(lib) generated 3 
+warnings (run `cargo 
+fix --lib -p layout` 
+to apply 3 
+suggestions)
+warning: 
+`html_parser` (lib) 
+generated 2 warnings
+   Compiling render 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser\crate
+s\render)
+warning: unused 
+variable: 
+`max_redirects`
+   --> crates\network\
+src\lib.rs:157:49
+    |
+157 | ...r, 
+max_redirects: u...
+    |       
+^^^^^^^^^^^^^ help: 
+if this is 
+intentional, prefix 
+it with an 
+underscore: 
+`_max_redirects`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: `network` 
+(lib) generated 1 
+warning (run `cargo 
+fix --lib -p network` 
+to apply 1 suggestion)
+   Compiling 
+icu_normalizer v1.5.0
+   Compiling 
+boa_parser v0.19.1
+   Compiling 
+boa_engine v0.19.1
+   Compiling 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+warning: unused 
+import: 
+`ApiAccessControl`
+  --> crates\js_engine
+\src\interpreter.rs:13
+:40
+   |
+13 | use crate::securi
+ty::{SecurityContext, 
+ApiAccessControl};
+   |                  
+                      
+^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unu
+sed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: 
+`std::sync::Arc`
+  --> crates\js_engine
+\src\http_client.rs:10
+:5
+   |
+10 | use 
+std::sync::Arc;
+   |     
+^^^^^^^^^^^^^^
+
+   Compiling 
+browser_core v0.1.0 (C
+:\Users\IJXP\Pictures\
+browser\crates\browser
+_core)
+warning: unused 
+import: `Duration`
+ --> crates\browser_co
+re\src\video.rs:8:17
+  |
+8 | use 
+std::time::{Duration, 
+Instant};
+  |                 
+^^^^^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+error[E0559]: variant 
+`DisplayCommand::SvgIm
+age` has no field 
+named `data`
+   --> crates\browser_
+core\src\lib.rs:732:37
+    |
+732 | ...             
+      data: 
+data.clone(),
+    |                 
+      ^^^^ `DisplayCom
+mand::SvgImage` does 
+not have this field
+    |
+    = note: available 
+fields are: `svg_data`
+
+error[E0559]: variant 
+`DisplayCommand::SvgIm
+age` has no field 
+named `data`
+   --> crates\browser_
+core\src\lib.rs:795:37
+    |
+795 | ...             
+      data: 
+data.clone(),
+    |                 
+      ^^^^ `DisplayCom
+mand::SvgImage` does 
+not have this field
+    |
+    = note: available 
+fields are: `svg_data`
+
+warning: unused 
+variable: `rgba`
+   --> crates\browser_
+core\src\lib.rs:662:21
+    |
+662 |                 
+let rgba = 
+img.to_rgba8();
+    |                 
+    ^^^^ help: if 
+this is intentional, 
+prefix it with an 
+underscore: `_rgba`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+For more information 
+about this error, try 
+`rustc --explain 
+E0559`.
+warning: 
+`browser_core` (lib) 
+generated 2 warnings
+error: could not 
+compile 
+`browser_core` (lib) 
+due to 2 previous 
+errors; 2 warnings 
+emitted
+warning: build 
+failed, waiting for 
+other jobs to 
+finish...
+warning: `js_engine` 
+(lib) generated 2 
+warnings (run `cargo 
+fix --lib -p 
+js_engine` to apply 2 
+suggestions)

@@ -1,0 +1,160 @@
+cargo :     Checking 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+At line:1 char:52
++ ... _render_v4.log 
+2>&1 ; cargo check -p 
+js_engine > 
+check_js_v4.log 2>&1
++                     
+      ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (    Checki   
+ ng js...ates\js_e    
+ngine):String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+warning: unused 
+import: 
+`ApiAccessControl`
+  --> crates\js_engine
+\src\interpreter.rs:13
+:40
+   |
+13 | use crate::securi
+ty::{SecurityContext, 
+ApiAccessControl};
+   |                  
+                      
+^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unu
+sed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: 
+`std::sync::Arc`
+  --> crates\js_engine
+\src\http_client.rs:10
+:5
+   |
+10 | use 
+std::sync::Arc;
+   |     
+^^^^^^^^^^^^^^
+
+error[E0599]: no 
+method named 
+`as_string` found for 
+enum `Value` in the 
+current scope
+   --> crates\js_engin
+e\src\js_runtime.rs:32
+0:39
+    |
+320 |             if 
+let Some(s) = 
+json_str.as_string() {
+    |                 
+                      
+^^^^^^^^^
+    |
+help: there is a 
+method `is_string` 
+with a similar name
+    |
+320 -             if 
+let Some(s) = 
+json_str.as_string() {
+320 +             if 
+let Some(s) = 
+json_str.is_string() {
+    |
+
+error[E0282]: type 
+annotations needed
+   --> crates\js_engin
+e\src\js_runtime.rs:32
+1:40
+    |
+321 |                 
+ CustomJsValue::String
+(s.to_std_string().unw
+rap_or_default())
+    |                 
+                      
+ ^ cannot infer type
+
+warning: unused 
+variable: `params`
+   --> crates\js_engin
+e\src\react.rs:691:32
+    |
+691 |     if let 
+JsValue::Function { 
+params, body, .. } = 
+&factory {
+    |                 
+               ^^^^^^ 
+help: try ignoring 
+the field: `params: _`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unused 
+variable: `body`
+   --> crates\js_engin
+e\src\react.rs:691:40
+    |
+691 |     if let 
+JsValue::Function { 
+params, body, .. } = 
+&factory {
+    |                 
+                      
+ ^^^^ help: try 
+ignoring the field: 
+`body: _`
+
+warning: unused 
+variable: `reducer`
+   --> crates\js_engin
+e\src\react.rs:808:9
+    |
+808 |     let reducer 
+= args.first();
+    |         ^^^^^^^ 
+help: if this is 
+intentional, prefix 
+it with an 
+underscore: `_reducer`
+
+Some errors have 
+detailed 
+explanations: E0282, 
+E0599.
+For more information 
+about an error, try 
+`rustc --explain 
+E0282`.
+warning: `js_engine` 
+(lib) generated 5 
+warnings
+error: could not 
+compile `js_engine` 
+(lib) due to 2 
+previous errors; 5 
+warnings emitted

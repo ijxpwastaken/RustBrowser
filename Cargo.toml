@@ -45,6 +45,7 @@ arboard = "3.2"
 name = "browser"
 version.workspace = true
 edition.workspace = true
+default-run = "browser"
 
 [dependencies]
 browser_core.workspace = true

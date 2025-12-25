@@ -1,0 +1,337 @@
+cargo :  Downloading 
+crates ...
+At line:1 char:52
++ ... _render_v2.log 
+2>&1 ; cargo check -p 
+js_engine > 
+check_js_v2.log 2>&1
++                     
+      ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ( Downloadi   
+ ng crates ...:Str    
+ing) [], RemoteEx    
+ception
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+  Downloaded 
+icu_normalizer v1.5.0
+  Downloaded 
+icu_provider_macros 
+v1.5.0
+  Downloaded icu_locid
+_transform_data v1.5.1
+  Downloaded 
+icu_locid_transform 
+v1.5.0
+  Downloaded 
+icu_normalizer_data 
+v1.5.1
+  Downloaded 
+icu_provider v1.5.0
+  Downloaded 
+icu_properties v1.5.1
+  Downloaded regress 
+v0.10.5
+  Downloaded 
+icu_properties_data 
+v1.5.1
+  Downloaded 
+icu_locid v1.5.0
+  Downloaded 
+icu_collections v1.5.0
+  Downloaded 
+boa_macros v0.19.1
+  Downloaded 
+boa_profiler v0.19.1
+  Downloaded 
+boa_interner v0.19.1
+  Downloaded 
+boa_string v0.19.1
+  Downloaded boa_gc 
+v0.19.1
+  Downloaded 
+boa_parser v0.19.1
+  Downloaded boa_ast 
+v0.19.1
+  Downloaded 
+boa_engine v0.19.1
+   Compiling icu_locid
+_transform_data v1.5.1
+    Checking 
+rustc-hash v2.1.1
+   Compiling 
+icu_properties_data 
+v1.5.1
+   Compiling 
+icu_provider_macros 
+v1.5.0
+   Compiling 
+boa_macros v0.19.1
+    Checking 
+boa_profiler v0.19.1
+    Checking indexmap 
+v2.12.1
+    Checking 
+hashbrown v0.14.5
+   Compiling 
+icu_normalizer_data 
+v1.5.1
+    Checking 
+icu_collections v1.5.0
+    Checking 
+icu_locid v1.5.0
+    Checking regress 
+v0.10.5
+    Checking time 
+v0.3.44
+    Checking 
+itertools v0.13.0
+    Checking dom 
+v0.1.0 (C:\Users\IJXP\
+Pictures\browser\crate
+s\dom)
+    Checking 
+boa_string v0.19.1
+    Checking 
+icu_provider v1.5.0
+    Checking dashmap 
+v5.5.3
+    Checking boa_gc 
+v0.19.1
+    Checking 
+icu_locid_transform 
+v1.5.0
+    Checking 
+boa_interner v0.19.1
+    Checking boa_ast 
+v0.19.1
+    Checking 
+icu_properties v1.5.1
+    Checking 
+icu_normalizer v1.5.0
+    Checking 
+boa_parser v0.19.1
+    Checking 
+boa_engine v0.19.1
+    Checking 
+js_engine v0.1.0 (C:\U
+sers\IJXP\Pictures\bro
+wser\crates\js_engine)
+warning: unused 
+import: 
+`ApiAccessControl`
+  --> crates\js_engine
+\src\interpreter.rs:13
+:40
+   |
+13 | use crate::securi
+ty::{SecurityContext, 
+ApiAccessControl};
+   |                  
+                      
+^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unu
+sed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: 
+`std::sync::Arc`
+  --> crates\js_engine
+\src\http_client.rs:10
+:5
+   |
+10 | use 
+std::sync::Arc;
+   |     
+^^^^^^^^^^^^^^
+
+error[E0599]: no 
+method named 
+`as_string` found for 
+enum `Value` in the 
+current scope
+   --> crates\js_engin
+e\src\js_runtime.rs:31
+7:39
+    |
+317 |             if 
+let Some(s) = 
+json_str.as_string() {
+    |                 
+                      
+^^^^^^^^^
+    |
+help: there is a 
+method `is_string` 
+with a similar name
+    |
+317 -             if 
+let Some(s) = 
+json_str.as_string() {
+317 +             if 
+let Some(s) = 
+json_str.is_string() {
+    |
+
+error[E0282]: type 
+annotations needed
+   --> crates\js_engin
+e\src\js_runtime.rs:31
+8:39
+    |
+318 |                 
+CustomJsValue::String(
+s.to_std_string_escape
+d())
+    |                 
+                      
+^ cannot infer type
+
+error[E0277]: the 
+trait bound 
+`boa_engine::JsValue: 
+From<&str>` is not 
+satisfied
+   --> crates\js_engin
+e\src\js_runtime.rs:33
+7:37
+    |
+337 |         CustomJs
+Value::String(s) => Js
+Value::from(s.as_str()
+),
+    |                 
+                    
+^^^^^^^ the trait 
+`From<&str>` is not 
+implemented for 
+`boa_engine::JsValue`
+    |
+    = help: the 
+following other types 
+implement trait 
+`From<T>`:
+              
+`boa_engine::JsValue` 
+implements 
+`From<&PropertyKey>`
+              
+`boa_engine::JsValue` 
+implements `From<()>`
+              
+`boa_engine::JsValue` 
+implements `From<Gener
+atorResumeKind>`
+              
+`boa_engine::JsValue` 
+implements 
+`From<JsArray>`
+              
+`boa_engine::JsValue` 
+implements 
+`From<JsArrayBuffer>`
+              
+`boa_engine::JsValue` 
+implements 
+`From<JsBigInt>`
+              
+`boa_engine::JsValue` 
+implements 
+`From<JsDataView>`
+              
+`boa_engine::JsValue` 
+implements 
+`From<JsDate>`
+            and 40 
+others
+
+error[E0599]: no 
+method named `iter` 
+found for reference `&
+Rc<RefCell<Vec<value::
+JsValue>>>` in the 
+current scope
+   --> crates\js_engin
+e\src\js_runtime.rs:34
+2:21
+    |
+342 |                 
+arr.iter()
+    |                 
+    ^^^^ method not 
+found in `&Rc<RefCell<
+Vec<value::JsValue>>>`
+
+warning: unused 
+variable: `params`
+   --> crates\js_engin
+e\src\react.rs:691:32
+    |
+691 |     if let 
+JsValue::Function { 
+params, body, .. } = 
+&factory {
+    |                 
+               ^^^^^^ 
+help: try ignoring 
+the field: `params: _`
+    |
+    = note: `#[warn(un
+used_variables)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unused 
+variable: `body`
+   --> crates\js_engin
+e\src\react.rs:691:40
+    |
+691 |     if let 
+JsValue::Function { 
+params, body, .. } = 
+&factory {
+    |                 
+                      
+ ^^^^ help: try 
+ignoring the field: 
+`body: _`
+
+warning: unused 
+variable: `reducer`
+   --> crates\js_engin
+e\src\react.rs:808:9
+    |
+808 |     let reducer 
+= args.first();
+    |         ^^^^^^^ 
+help: if this is 
+intentional, prefix 
+it with an 
+underscore: `_reducer`
+
+Some errors have 
+detailed 
+explanations: E0277, 
+E0282, E0599.
+For more information 
+about an error, try 
+`rustc --explain 
+E0277`.
+warning: `js_engine` 
+(lib) generated 5 
+warnings
+error: could not 
+compile `js_engine` 
+(lib) due to 4 
+previous errors; 5 
+warnings emitted

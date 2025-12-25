@@ -1,0 +1,627 @@
+cargo :     Checking 
+style v0.1.0 (C:\Users
+\IJXP\Pictures\browser
+\crates\style)
+At line:1 char:1
++ cargo check -p 
+render 2>&1 | 
+Out-File -Encoding 
+ascii check_render_cl 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (    Checki   
+ ng st...r\crates\    
+style):String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:773:13
+    |
+773 |             Sele
+ctorPart::Type(tag) 
+=> {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+773 -             Sele
+ctorPart::Type(tag) 
+=> {
+773 +             
+Selector::Type(tag) 
+=> {
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:782:13
+    |
+782 |             Sele
+ctorPart::Class(class)
+ => {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+782 -             Sele
+ctorPart::Class(class)
+ => {
+782 +             Sele
+ctor::Class(class) => 
+{
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:791:13
+    |
+791 |             
+SelectorPart::Id(id) 
+=> {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+791 -             
+SelectorPart::Id(id) 
+=> {
+791 +             
+Selector::Id(id) => {
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:800:13
+    |
+800 |             Sele
+ctorPart::Universal 
+=> {}
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+800 -             Sele
+ctorPart::Universal 
+=> {}
+800 +             
+Selector::Universal 
+=> {}
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:801:13
+    |
+801 |             Sele
+ctorPart::Attribute { 
+name, operator, value 
+} => {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+801 -             Sele
+ctorPart::Attribute { 
+name, operator, value 
+} => {
+801 +             
+Selector::Attribute { 
+name, operator, value 
+} => {
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`AttributeOperator`
+   --> crates\style\sr
+c\lib.rs:806:31
+    |
+806 |                 
+        (Some(Attribut
+eOperator::Equals), 
+Some(expected), 
+Some(actual)) => 
+actual == expected,
+    |                 
+              
+^^^^^^^^^^^^^^^^^ use 
+of undeclared type 
+`AttributeOperator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+AttributeOperator;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`AttributeOperator`
+   --> crates\style\sr
+c\lib.rs:807:31
+    |
+807 |                 
+        (Some(Attribut
+eOperator::PrefixMatch
+), Some(expected), 
+Some(actual)) => actua
+l.starts_with(expected
+),
+    |                 
+              
+^^^^^^^^^^^^^^^^^ use 
+of undeclared type 
+`AttributeOperator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+AttributeOperator;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`AttributeOperator`
+   --> crates\style\sr
+c\lib.rs:808:31
+    |
+808 |                 
+        (Some(Attribut
+eOperator::SuffixMatch
+), Some(expected), 
+Some(actual)) => actua
+l.ends_with(expected),
+    |                 
+              
+^^^^^^^^^^^^^^^^^ use 
+of undeclared type 
+`AttributeOperator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+AttributeOperator;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`AttributeOperator`
+   --> crates\style\sr
+c\lib.rs:809:31
+    |
+809 |                 
+        (Some(Attribut
+eOperator::SubstringMa
+tch), Some(expected), 
+Some(actual)) => actua
+l.contains(expected),
+    |                 
+              
+^^^^^^^^^^^^^^^^^ use 
+of undeclared type 
+`AttributeOperator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+AttributeOperator;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:819:13
+    |
+819 |             Sele
+ctorPart::PseudoClass(
+pseudo) => {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+819 -             Sele
+ctorPart::PseudoClass(
+pseudo) => {
+819 +             Sele
+ctor::PseudoClass(pseu
+do) => {
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:825:13
+    |
+825 |             Sele
+ctorPart::PseudoElemen
+t(_) => {}
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+825 -             Sele
+ctorPart::PseudoElemen
+t(_) => {}
+825 +             Sele
+ctor::PseudoElement(_)
+ => {}
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`SelectorPart`
+   --> crates\style\sr
+c\lib.rs:826:13
+    |
+826 |             Sele
+ctorPart::Combinator(c
+omb) => {
+    |             
+^^^^^^^^^^^^ use of 
+undeclared type 
+`SelectorPart`
+    |
+help: a struct with a 
+similar name exists
+    |
+826 -             Sele
+ctorPart::Combinator(c
+omb) => {
+826 +             Sele
+ctor::Combinator(comb)
+ => {
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+SelectorPart;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`Combinator`
+   --> crates\style\sr
+c\lib.rs:828:21
+    |
+828 |                 
+    Combinator::Descen
+dant | 
+Combinator::Child => {
+    |                 
+    ^^^^^^^^^^ use of 
+undeclared type 
+`Combinator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+Combinator;
+    |
+
+error[E0433]: failed 
+to resolve: use of 
+undeclared type 
+`Combinator`
+   --> crates\style\sr
+c\lib.rs:828:46
+    |
+828 |                 
+    Combinator::Descen
+dant | 
+Combinator::Child => {
+    |                 
+                      
+       ^^^^^^^^^^ use 
+of undeclared type 
+`Combinator`
+    |
+help: consider 
+importing this enum
+    |
+  5 + use css_parser::
+Combinator;
+    |
+
+error[E0425]: cannot 
+find function 
+`parse_css` in this 
+scope
+   --> crates\style\sr
+c\lib.rs:919:36
+    |
+919 |                 
+let inline_sheet = par
+se_css(&inline_css);
+    |                 
+                   
+^^^^^^^^^ not found 
+in this scope
+    |
+help: consider 
+importing this 
+function
+    |
+  5 + use 
+css_parser::parse_css;
+    |
+
+warning: unused 
+import: `Node`
+ --> crates\style\src\
+lib.rs:9:11
+  |
+9 | use dom::{Node, 
+NodeRef, Element, 
+Document};
+  |           ^^^^
+  |
+  = note: `#[warn(unus
+ed_imports)]` (part 
+of `#[warn(unused)]`) 
+on by default
+
+warning: unused 
+import: `std::collecti
+ons::HashMap`
+  --> crates\style\src
+\lib.rs:10:5
+   |
+10 | use std::collecti
+ons::HashMap;
+   |     ^^^^^^^^^^^^^
+^^^^^^^^^^^^
+
+error[E0282]: type 
+annotations needed
+   --> crates\style\sr
+c\lib.rs:807:97
+    |
+807 |                 
+        (Some(Attribut
+eOperator::PrefixMatch
+), Some(expected), 
+Some(actual)) => actua
+l.starts_with(expected
+),
+    |                 
+                      
+                      
+                      
+              ^^^^^^ 
+cannot infer type
+
+error[E0282]: type 
+annotations needed
+   --> crates\style\sr
+c\lib.rs:808:97
+    |
+808 |                 
+        (Some(Attribut
+eOperator::SuffixMatch
+), Some(expected), 
+Some(actual)) => actua
+l.ends_with(expected),
+    |                 
+                      
+                      
+                      
+              ^^^^^^ 
+cannot infer type
+
+error[E0282]: type 
+annotations needed
+   --> crates\style\sr
+c\lib.rs:809:100
+    |
+809 |                 
+        (Some(Attribut
+eOperator::SubstringMa
+tch), Some(expected), 
+Some(actual)) => actua
+l.contains(expected),
+    |                 
+                      
+                      
+                      
+                 
+^^^^^^ cannot infer 
+type
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:387:21
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |                 
+                      
+                      
+   ------ matches all 
+the relevant values
+...
+387 |             
+"pre" | "code" => {
+    |                 
+    ^^^^^^ no value 
+can reach this
+    |
+    = note: `#[warn(un
+reachable_patterns)]` 
+(part of 
+`#[warn(unused)]`) on 
+by default
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:390:13
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |             ----
+----------------------
+----------------------
+------------------- 
+matches all the 
+relevant values
+...
+390 |             
+"strong" | "b" => {
+    |             
+^^^^^^^^^^^^^^ no 
+value can reach this
+
+warning: unreachable 
+pattern
+   --> crates\style\sr
+c\lib.rs:393:13
+    |
+327 |             
+"span" | "a" | 
+"strong" | "em" | "b" 
+| "i" | "u" | "code" 
+| "small" => {
+    |             ----
+----------------------
+----------------------
+------------------- 
+matches all the 
+relevant values
+...
+393 |             
+"em" | "i" => {
+    |             
+^^^^^^^^^^ no value 
+can reach this
+
+Some errors have 
+detailed 
+explanations: E0282, 
+E0425, E0433.
+For more information 
+about an error, try 
+`rustc --explain 
+E0282`.
+warning: `style` 
+(lib) generated 5 
+warnings
+error: could not 
+compile `style` (lib) 
+due to 18 previous 
+errors; 5 warnings 
+emitted

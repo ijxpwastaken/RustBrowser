@@ -6,8 +6,10 @@
 [![Speed](https://img.shields.io/badge/Speed-2.5x%20Faster-green.svg)](#benchmarks)
 [![Fingerprint](https://img.shields.io/badge/Fingerprint-100%25%20Protection-purple.svg)](#fingerprint-test)
 
----
+![RustBrowser Screenshot](assets/screenshot.png)
 
+---
+i vibe coded this and it works pretty well  just not for use  Claude opus 4.5 in antigravity is what i maked it for i maked it in 48 hours more but 2 days 
 ## �️ Fingerprint Protection - BEATS TOR
 
 ### Protection Comparison
@@ -154,3 +156,13 @@ See [UNLICENSE](UNLICENSE) for more details.
 ---
 
 **Built with 🦀 Rust. Maximum speed. Maximum privacy. Beats Tor.**
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
+
+Check out our **[Good First Issues](CONTRIBUTING.md#good-first-issues)** if you want to help but don't know where to start!
+
+**Maintainers Note:** Please ensure the following topics are added to the repo: `rust`, `browser`, `privacy`, `react`.

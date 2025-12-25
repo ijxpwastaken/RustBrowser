@@ -8,3 +8,6 @@ description = "Rendering engine - paint commands and display"
 layout = { workspace = true }
 style = { workspace = true }
 softbuffer = { workspace = true }
+resvg = "0.42"
+tiny-skia = "0.11"
+log = { workspace = true }

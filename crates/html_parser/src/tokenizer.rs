@@ -60,6 +60,7 @@ enum State {
     BeforeDoctypeName,
     DoctypeName,
     AfterDoctypeName,
+    RawText,
 }
 
 /// HTML5 Tokenizer
@@ -75,6 +76,7 @@ pub struct Tokenizer<'a> {
     is_end_tag: bool,
     buffer: String,
     tokens: Vec<Token>,
+    raw_tag_name: String,
 }
 
 impl<'a> Tokenizer<'a> {
@@ -92,6 +94,7 @@ impl<'a> Tokenizer<'a> {
             is_end_tag: false,
             buffer: String::new(),
             tokens: Vec::new(),
+            raw_tag_name: String::new(),
         }
     }
 
@@ -193,7 +196,7 @@ impl<'a> Tokenizer<'a> {
                             self.state = State::SelfClosingStartTag;
                         }
                         Some('>') => {
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(c) => {
@@ -201,6 +204,72 @@ impl<'a> Tokenizer<'a> {
                         }
                         None => {
                             return Err(ParseError::UnexpectedEof);
+                        }
+                    }
+                }
+
+                State::RawText => {
+                    match self.input.peek() {
+                        Some('<') => {
+                            // Possible end tag
+                            // Check if it's </raw_tag_name>
+                            let mut chars = self.input.clone();
+                            chars.next(); // skip <
+                            if let Some('/') = chars.next() {
+                                // Check if tag name matches
+                                let mut matches = true;
+                                for expected_char in self.raw_tag_name.chars() {
+                                    match chars.next() {
+                                        Some(c) if c.to_ascii_lowercase() == expected_char => {},
+                                        _ => { matches = false; break; }
+                                    }
+                                }
+                                
+                                if matches {
+                                    // Check for terminator (whitespace, >, or /)
+                                    match chars.next() {
+                                        Some(c) if c.is_whitespace() || c == '>' || c == '/' => {
+                                            // It's the end tag!
+                                            // Flush buffer as text
+                                            if !self.buffer.is_empty() {
+                                                let text = std::mem::take(&mut self.buffer);
+                                                // Don't consume the < yet, let loop handle it?
+                                                // Actually we should return the Text token, then next loop hits < -> EndTagOpen
+                                                // But wait, if we return text now, state must remain RawText? No.
+                                                // If we return text, next call we are still in RawText and see < again.
+                                                // So we must switch state OR consume.
+                                                
+                                                // Correct logic: Return text, set state to Data so next loop parses </tag> normally.
+                                                // BUT 'Data' state would parse ANY tag. We specifically want this one.
+                                                // Actually, standard HTML switches to Data temporarily?
+                                                // Creating a 'RawTextEnd' transition is complex here.
+                                                // Simplified: switch to Data.
+                                                self.state = State::Data;
+                                                return Ok(Token::Text(text));
+                                            } else {
+                                                self.state = State::Data;
+                                            }
+                                            continue;
+                                        },
+                                        _ => {}
+                                    }
+                                }
+                            }
+                            
+                            // Not the end tag, consume <
+                            self.input.next();
+                            self.buffer.push('<');
+                        }
+                        Some(c) => {
+                             self.buffer.push(*c);
+                             self.input.next();
+                        }
+                        None => {
+                            if !self.buffer.is_empty() {
+                                let text = std::mem::take(&mut self.buffer);
+                                return Ok(Token::Text(text));
+                            }
+                            return Ok(Token::Eof);
                         }
                     }
                 }
@@ -216,7 +285,7 @@ impl<'a> Tokenizer<'a> {
                         }
                         Some('>') => {
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(_) => {
@@ -248,7 +317,7 @@ impl<'a> Tokenizer<'a> {
                         Some('>') => {
                             self.save_attribute();
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(&c) => {
@@ -278,7 +347,7 @@ impl<'a> Tokenizer<'a> {
                         Some('>') => {
                             self.save_attribute();
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(_) => {
@@ -309,7 +378,7 @@ impl<'a> Tokenizer<'a> {
                         Some('>') => {
                             self.save_attribute();
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(_) => {
@@ -361,7 +430,7 @@ impl<'a> Tokenizer<'a> {
                         Some('>') => {
                             self.save_attribute();
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         Some(&c) => {
@@ -386,7 +455,7 @@ impl<'a> Tokenizer<'a> {
                         }
                         Some('>') => {
                             self.input.next();
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         _ => {
@@ -400,7 +469,7 @@ impl<'a> Tokenizer<'a> {
                         Some('>') => {
                             self.input.next();
                             self.is_self_closing = true;
-                            self.state = State::Data;
+                            self.handle_start_tag_end();
                             return Ok(self.emit_tag());
                         }
                         _ => {
@@ -569,6 +638,21 @@ impl<'a> Tokenizer<'a> {
                 attributes,
                 self_closing: self.is_self_closing,
             }
+        }
+    }
+
+    fn handle_start_tag_end(&mut self) {
+        if self.is_self_closing || self.is_end_tag {
+           self.state = State::Data;
+           return;
+        }
+
+        let name = self.current_tag_name.as_str();
+        if name == "script" || name == "style" || name == "title" || name == "textarea" {
+            self.state = State::RawText;
+            self.raw_tag_name = name.to_string();
+        } else {
+            self.state = State::Data;
         }
     }
 }

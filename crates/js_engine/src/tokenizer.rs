@@ -796,8 +796,8 @@ impl<'a> Tokenizer<'a> {
 
     fn advance(&mut self) -> Option<char> {
         let c = self.chars.next();
-        if c.is_some() {
-            self.current_pos += 1;
+        if let Some(ch) = c {
+            self.current_pos += ch.len_utf8(); // Fix: use char's actual byte length
             self.column += 1;
         }
         c
